@@ -16,6 +16,8 @@ public class Level1Game : MonoBehaviour
     GameObject targetA;
     GameObject targetB;
     GameObject trialCounter;
+    GameObject starPanel;
+    GameObject text;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,9 @@ public class Level1Game : MonoBehaviour
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         trialCounter = GameObject.Find("TrialCounter_1");
+        starPanel = GameObject.Find("StarPanel1");
+        text = GameObject.Find("StarAmount_1");
+        starPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -90,8 +95,8 @@ public class Level1Game : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        //return to level page button
-        finish();
+        show();
+        //finish();
     }
 
     public void selectA()
@@ -104,5 +109,26 @@ public class Level1Game : MonoBehaviour
     {
         isSelectedA = false;
         checkCorrectnes();
+    }
+
+    public int getCorrect()
+    {
+        return correct;
+    }
+
+    public int getTrials()
+    {
+        return numberOfTrials;
+    }
+
+    public void show()
+    {
+        string prefix = "Du hast ";
+        string mid = " von ";
+        string suffix = " Sternen bekommen!";
+        string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
+        string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
+        starPanel.SetActive(true);
+        text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
     }
 }

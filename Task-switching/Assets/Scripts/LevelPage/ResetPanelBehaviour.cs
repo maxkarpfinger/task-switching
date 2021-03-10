@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResetPanelBehaviour : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class ResetPanelBehaviour : MonoBehaviour
     {
         panel.SetActive(false);
         GameManager.get().reset();
+        SceneManager.LoadScene("LevelPage");
     }
 
     public void OnCancel()
