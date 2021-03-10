@@ -10,7 +10,7 @@ public class Level3Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button = GameObject.Find("Level3");
+        button = GameObject.Find("Level3Button");
         if (GameManager.get().getLevel() < level)
         {
             lockButton();

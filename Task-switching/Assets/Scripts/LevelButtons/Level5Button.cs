@@ -10,7 +10,7 @@ public class Level5Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button = GameObject.Find("Level5");
+        button = GameObject.Find("Level5Button");
         if (GameManager.get().getLevel() < level)
         {
             lockButton();

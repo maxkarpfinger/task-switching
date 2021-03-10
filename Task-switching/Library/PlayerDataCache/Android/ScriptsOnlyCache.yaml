@@ -4,6 +4,7 @@ ScriptsOnlyBuild:
     - ExitBehaviour
     - GameManager
     - Level1Button
+    - Level1Game
     - Level2Button
     - Level3Button
     - Level4Button
@@ -12,6 +13,7 @@ ScriptsOnlyBuild:
     - ResetBehaviour
     - ResetPanelBehaviour
     - StartBehaviour
+    - TargetA_1
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.Tilemap.Editor.dll:
@@ -28,6 +30,7 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -42,7 +45,11 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 20
       Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -51,14 +58,26 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11266}
     - Class: 114
+      Script: {instanceID: 11302}
+    - Class: 114
+      Script: {instanceID: 11558}
+    - Class: 114
       Script: {instanceID: 11612}
     - Class: 114
       Script: {instanceID: 12282}
     - Class: 114
+      Script: {instanceID: 12988}
+    - Class: 114
       Script: {instanceID: 13754}
     - Class: 114
+      Script: {instanceID: 14298}
+    - Class: 114
       Script: {instanceID: 14366}
+    - Class: 114
+      Script: {instanceID: 31916}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -206,7 +225,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Level1
+    className: Level1Game
   - hash:
       serializedVersion: 2
       Hash: 87ff43d2baf3385cba327d8f803a4ebb
@@ -747,6 +766,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Level5Button
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TargetA_1
   platform: 13
   scenePathNames:
   - Assets/Scenes/StartPage.unity
