@@ -18,6 +18,13 @@ public class StarOk1 : MonoBehaviour
 
     public void OnButtonPress()
     {
-        GameObject.Find("Level1Manager").GetComponent<Level1Game>().finish();
+        if(GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCurrentTrial() < GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials())
+        {
+            GameObject.Find("Level1Manager").GetComponent<Level1Game>().showPanel(false);
+        }
+        else
+        {
+            GameObject.Find("Level1Manager").GetComponent<Level1Game>().finish();
+        }
     }
 }
