@@ -11,7 +11,7 @@ public class Level1Game : MonoBehaviour
     int trial = 0;
     int correct = 0;
     int level = 0;
-    static int numberOfTrials = 4;
+    static int numberOfTrials = 8;
     int[] stimulusArray = new int[numberOfTrials]; 
     bool colorGame = true;
     bool isCorrectAnswerA = true;
@@ -88,12 +88,12 @@ public class Level1Game : MonoBehaviour
     {
         //
         trial++;
-        if (trial == 2)
-        {
-            colorGame = false;
-            starPanel.SetActive(true);
-            text.GetComponent<Text>().text = SHAPE_GAME_INFO;
-        }
+        //if (trial == 2)
+        //{
+        //    colorGame = false;
+        //    starPanel.SetActive(true);
+        //    text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+        //}
         if(trial >= numberOfTrials)
         {
             showStars();
@@ -106,37 +106,17 @@ public class Level1Game : MonoBehaviour
     public void setupTrial()
     {
         //set correct answer and update stimulus
+        //only color game
         Debug.Log("Trial is "+ (trial+1).ToString()+", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
             stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
+            isCorrectAnswerA = true;
         }
         else
         {
             stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
-        }
-        
-        if (colorGame)
-        {
-            if (stimulusArray[trial] == 0)
-            {
-                //isCorrectAnswerA = true;
-            }
-            else
-            {
-                //isCorrectAnswerA = false;
-            }
-        }
-        else
-        {
-            if (stimulusArray[trial] == 0)
-            {
-                //isCorrectAnswerA = true;
-            }
-            else
-            {
-                //isCorrectAnswerA = false;
-            }
+            isCorrectAnswerA = false;
         }
     }
 

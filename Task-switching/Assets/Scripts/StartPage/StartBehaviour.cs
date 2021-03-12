@@ -22,4 +22,10 @@ public class StartBehaviour : MonoBehaviour
         //switch to Level page
         SceneManager.LoadScene("LevelPage");
     }
+	
+    public void OnImpressumPress()
+    {
+	//switch to Impressum page
+	SceneManager.LoadScene("ImpressumPage");
+    }
 }
