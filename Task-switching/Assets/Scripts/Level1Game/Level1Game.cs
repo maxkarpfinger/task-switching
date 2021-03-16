@@ -16,12 +16,13 @@ public class Level1Game : MonoBehaviour
     bool colorGame = true;
     bool isCorrectAnswerA = true;
     bool isSelectedA = true;
-    GameObject stimulus;
+    //Sprite stimulus;
     GameObject targetA;
     GameObject targetB;
     GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
+    public SpriteRenderer spriteRenderer;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
         "lass uns das Farbenspiel spielen.\n " +
@@ -40,12 +41,15 @@ public class Level1Game : MonoBehaviour
         "Das ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n " +
         "Los geht's!";
     Sprite BLUE_EMMA;
+    Sprite BLUE_LUNA;
     Sprite ORANGE_LUNA;
+    Sprite ORANGE_EMMA;
 
     // Start is called before the first frame update
     void Start()
     {
-        stimulus = GameObject.Find("Stimulus_1");
+        //stimulus = Resources.Load("blue_emma", typeof(Sprite)) as Sprite;
+        spriteRenderer = GameObject.Find("blue_emma").GetComponent<SpriteRenderer>();
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         trialCounter = GameObject.Find("TrialCounter_1");
@@ -54,7 +58,7 @@ public class Level1Game : MonoBehaviour
         starPanel.SetActive(true);
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-        ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+        ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
         for (int i=0; i<numberOfTrials; i++)
         {
             int numb = Random.Range(0, 2);
@@ -71,7 +75,7 @@ public class Level1Game : MonoBehaviour
 
     public void checkCorrectnes()
     {
-        bool trialIsCorrect = isCorrectAnswerA && isSelectedA;
+        bool trialIsCorrect = isCorrectAnswerA && isSelectedA || !isCorrectAnswerA && !isSelectedA;
         //check according to type of game and chosen image
         if (trialIsCorrect)
         {
@@ -110,12 +114,16 @@ public class Level1Game : MonoBehaviour
         Debug.Log("Trial is "+ (trial+1).ToString()+", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
-            stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
+            //stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
+            //stimulus.GetComponent<SpriteRenderer>().sprite = BLUE_EMMA;
+            spriteRenderer.sprite = BLUE_EMMA;
             isCorrectAnswerA = true;
         }
         else
         {
-            stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
+            //stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
+            //stimulus.Sprite = ORANGE_EMMA;
+            spriteRenderer.sprite = ORANGE_EMMA;
             isCorrectAnswerA = false;
         }
     }
