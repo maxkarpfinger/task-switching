@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class TargetA_1 : MonoBehaviour
+public class TargetA_1 : MonoBehaviour, IDropHandler
 {
     GameObject level; 
     // Start is called before the first frame update
@@ -21,5 +22,16 @@ public class TargetA_1 : MonoBehaviour
     public void OnButtonPress()
     {
         level.GetComponent<Level1Game>().selectA();
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+        OnButtonPress();
+        Debug.Log("OnDrop");
+    }
+
+    public void OnMouseUp()
+    {
+        OnButtonPress();
     }
 }

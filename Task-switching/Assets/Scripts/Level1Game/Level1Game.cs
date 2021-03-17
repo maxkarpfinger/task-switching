@@ -16,13 +16,13 @@ public class Level1Game : MonoBehaviour
     bool colorGame = true;
     bool isCorrectAnswerA = true;
     bool isSelectedA = true;
-    //Sprite stimulus;
+    GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
     GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
-    public SpriteRenderer spriteRenderer;
+    //public SpriteRenderer spriteRenderer;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
         "lass uns das Farbenspiel spielen.\n " +
@@ -49,8 +49,8 @@ public class Level1Game : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //stimulus = Resources.Load("blue_emma", typeof(Sprite)) as Sprite;
-        spriteRenderer = GameObject.Find("blue_emma").GetComponent<SpriteRenderer>();
+        stimulus = GameObject.Find("Stimulus_1");
+        //spriteRenderer = GameObject.Find("blue_emma").GetComponent<SpriteRenderer>();
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         trialCounter = GameObject.Find("TrialCounter_1");
@@ -60,8 +60,8 @@ public class Level1Game : MonoBehaviour
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
         ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
-        SPRITE_DEFAULT_POS = GameObject.Find("blue_emma").transform.position;
-        //SPRITE_DEFAULT_POS = new Vector3(0, 0, 0);
+        SPRITE_DEFAULT_POS = stimulus.transform.position;
+
         for (int i=0; i<numberOfTrials; i++)
         {
             int numb = Random.Range(0, 2);
@@ -117,23 +117,18 @@ public class Level1Game : MonoBehaviour
         Debug.Log("Trial is "+ (trial+1).ToString()+", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
-            //stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
-            //stimulus.GetComponent<SpriteRenderer>().sprite = BLUE_EMMA;
-            spriteRenderer.sprite = BLUE_EMMA;
+            //spriteRenderer.sprite = BLUE_EMMA;
+            stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
             isCorrectAnswerA = true;
         }
         else
         {
-            //stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
-            //stimulus.Sprite = ORANGE_EMMA;
-            spriteRenderer.sprite = ORANGE_EMMA;
+            //spriteRenderer.sprite = ORANGE_EMMA;
+            stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
             isCorrectAnswerA = false;
         }
         //reset stimulus to origin position
-        //GameObject.Find("blue_emma").GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(SPRITE_DEFAULT_POS);
-        //GameObject.Find("blue_emma").GetComponent<Transform>().Translate(SPRITE_DEFAULT_POS);
-        GameObject.Find("blue_emma").transform.position = SPRITE_DEFAULT_POS;
-        //transform.Translate(new Vector2(0, 325));
+        stimulus.transform.position = SPRITE_DEFAULT_POS;
     }
 
     public void finish()
