@@ -11,7 +11,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     // Start is called before the first frame update
     void Start()
     {
-        canvasGroup = GetComponent<CanvasGroup>();
+        //canvasGroup = GetComponent<CanvasGroup>();
     }
 
     // Update is called once per frame
@@ -27,14 +27,13 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnMouseDown()
     {
         //isDragging = true;
-        canvasGroup.blocksRaycasts = false;
+        //canvasGroup.blocksRaycasts = false;
         //canvasGroup.alpha = 0.1f;
     }
 
     public void OnMouseUp()
     {
        // isDragging = false;
-        canvasGroup.blocksRaycasts = true;
         //canvasGroup.alpha = 1f;
     }
 
@@ -42,6 +41,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         Debug.Log("OnDrag");
         //transform.Translate(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
+        //canvasGroup.blocksRaycasts = false;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         transform.Translate(mousePosition);
     }
