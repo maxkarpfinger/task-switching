@@ -44,6 +44,7 @@ public class Level1Game : MonoBehaviour
     Sprite BLUE_LUNA;
     Sprite ORANGE_LUNA;
     Sprite ORANGE_EMMA;
+    Vector3 SPRITE_DEFAULT_POS;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +60,8 @@ public class Level1Game : MonoBehaviour
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
         ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+        SPRITE_DEFAULT_POS = GameObject.Find("blue_emma").transform.position;
+        //SPRITE_DEFAULT_POS = new Vector3(0, 0, 0);
         for (int i=0; i<numberOfTrials; i++)
         {
             int numb = Random.Range(0, 2);
@@ -126,6 +129,11 @@ public class Level1Game : MonoBehaviour
             spriteRenderer.sprite = ORANGE_EMMA;
             isCorrectAnswerA = false;
         }
+        //reset stimulus to origin position
+        //GameObject.Find("blue_emma").GetComponent<Transform>().position = Camera.main.ScreenToWorldPoint(SPRITE_DEFAULT_POS);
+        //GameObject.Find("blue_emma").GetComponent<Transform>().Translate(SPRITE_DEFAULT_POS);
+        GameObject.Find("blue_emma").transform.position = SPRITE_DEFAULT_POS;
+        //transform.Translate(new Vector2(0, 325));
     }
 
     public void finish()
