@@ -27,14 +27,14 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnMouseDown()
     {
         //isDragging = true;
-        //canvasGroup.blocksRaycasts = false;
+        canvasGroup.blocksRaycasts = false;
         //canvasGroup.alpha = 0.1f;
     }
 
     public void OnMouseUp()
     {
        // isDragging = false;
-       // canvasGroup.blocksRaycasts = true;
+        canvasGroup.blocksRaycasts = true;
         //canvasGroup.alpha = 1f;
     }
 
