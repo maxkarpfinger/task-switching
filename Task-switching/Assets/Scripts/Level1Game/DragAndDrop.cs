@@ -24,17 +24,26 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
         }
     }
 
-    public void OnMouseDown()
-    {
+    //public void OnMouseDown()
+    //{
         //isDragging = true;
-        //canvasGroup.blocksRaycasts = false;
+     //   Debug.Log("blocksRaycasts false");
+     //   canvasGroup.blocksRaycasts = false;
         //canvasGroup.alpha = 0.1f;
-    }
+    //}
 
-    public void OnMouseUp()
-    {
-       // isDragging = false;
+    //public void OnMouseUp()
+    //{
+     //   Debug.Log("blocksRaycasts true");
+     //   canvasGroup.blocksRaycasts = true;
+        // isDragging = false;
         //canvasGroup.alpha = 1f;
+    //}
+
+    public void OnBeginDrag(PointerEventData _EventData)
+    {
+        //canvasGroup.blocksRaycasts = false;
+        Debug.Log("OnBeginDrag");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -49,6 +58,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
+        //canvasGroup.blocksRaycasts = true;
     }
 
 

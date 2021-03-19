@@ -6,14 +6,14 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
-public class Level1Game : MonoBehaviour
+public class Level2Game : MonoBehaviour
 {
     int trial = 0;
     int correct = 0;
-    int level = 0;
+    int level = 1;
     static int numberOfTrials = 8;
-    int[] stimulusArray = new int[numberOfTrials]; 
-    bool colorGame = true;
+    int[] stimulusArray = new int[numberOfTrials];
+    bool colorGame = false;
     bool isCorrectAnswerA = true;
     bool isSelectedA = true;
     GameObject stimulus;
@@ -22,25 +22,15 @@ public class Level1Game : MonoBehaviour
     GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
-    //public SpriteRenderer spriteRenderer;
-    string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
-        "Wir werden ein Farbenspiel spielen, " +
-        "lass uns das Farbenspiel spielen.\n " +
-        "Auf dem Bildschirm findest Du ein Tier:\n" +
-        "Das ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\n Hilfst du " +
-        "ihr, ins gleich gefärbte Kästchen(Haus oder Korb) zu finden. Deine Aufgabe ist es, Emma in ihr gefärbtes Kästchen zu begleiten.\n" +
-        "Los geht's!" ;
     string SHAPE_GAME_INFO = "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel spielen, lass uns das Formenspiel spielen.\n" +
-        "Auf dem Bildschirm findest Du zwei Tiere:\n " +
-        "Das ist Emma, Emma spielt gerne mit Bällen.\n" +
-        "Hilfst Du ihr/ihm, den Ball zu finden.\n" +
-        "Deine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma siest. \n" +
-        "Das ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n " +
+        "Auf dem Bildschirm findest Du zwei Formen:\n " +
+        "Das ist Emma, Emma ist eine Katze.\n" +
+        "Hilfst Du ihr zu den anderen Katzen zu kommen?.\n" +
+        "Deine Aufgabe ist es, Emma zu den anderen Katzen(Haus) zu ziehen wenn du Emma siehst.\n" +
+        "Das ist ein Schiff. Hilfst du dem Schiff aus Meer zu finden. Deine Aufgabe ist es, das Schiff auf das Meer zu bringen, wenn du das Schiff siehst.\n " +
         "Los geht's!";
-    Sprite BLUE_EMMA;
-    Sprite BLUE_LUNA;
-    Sprite ORANGE_LUNA;
-    Sprite ORANGE_EMMA;
+    Sprite SHIP;
+    Sprite GRAY_EMMA;
     Vector3 SPRITE_DEFAULT_POS;
 
     // Start is called before the first frame update
@@ -48,18 +38,18 @@ public class Level1Game : MonoBehaviour
     {
         stimulus = GameObject.Find("Stimulus_1");
         //spriteRenderer = GameObject.Find("blue_emma").GetComponent<SpriteRenderer>();
-        targetA = GameObject.Find("TargetA_1");
-        targetB = GameObject.Find("TargetB_1");
+        targetA = GameObject.Find("TargetA_1_D");
+        targetB = GameObject.Find("TargetB_1_D");
         trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(true);
-        text.GetComponent<Text>().text = COLOR_GAME_INFO;
-        BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-        ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+        text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+        SHIP = Resources.Load<Sprite>("noColor_ship");
+        GRAY_EMMA = Resources.Load<Sprite>("gray_emma");
         SPRITE_DEFAULT_POS = stimulus.transform.position;
 
-        for (int i=0; i<numberOfTrials; i++)
+        for (int i = 0; i < numberOfTrials; i++)
         {
             int numb = Random.Range(0, 2);
             stimulusArray[i] = numb;
@@ -70,7 +60,7 @@ public class Level1Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void checkCorrectnes()
@@ -98,12 +88,12 @@ public class Level1Game : MonoBehaviour
         //    starPanel.SetActive(true);
         //    text.GetComponent<Text>().text = SHAPE_GAME_INFO;
         //}
-        if(trial >= numberOfTrials)
+        if (trial >= numberOfTrials)
         {
             showStars();
             return;
         }
-        trialCounter.GetComponent<Text>().text = (trial +1).ToString();
+        trialCounter.GetComponent<Text>().text = (trial + 1).ToString();
         setupTrial();
     }
 
@@ -111,17 +101,17 @@ public class Level1Game : MonoBehaviour
     {
         //set correct answer and update stimulus
         //only color game
-        Debug.Log("Trial is "+ (trial+1).ToString()+", stimulus is " + stimulusArray[trial].ToString());
+        Debug.Log("Trial is " + (trial + 1).ToString() + ", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
             //spriteRenderer.sprite = BLUE_EMMA;
-            stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
+            stimulus.GetComponent<Image>().sprite = SHIP;
             isCorrectAnswerA = true;
         }
         else
         {
             //spriteRenderer.sprite = ORANGE_EMMA;
-            stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
+            stimulus.GetComponent<Image>().sprite = GRAY_EMMA;
             isCorrectAnswerA = false;
         }
         //reset stimulus to origin position
@@ -145,8 +135,8 @@ public class Level1Game : MonoBehaviour
         string prefix = "Du hast ";
         string mid = " von ";
         string suffix = " Sternen bekommen!";
-        string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
-        string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
+        string number = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getCorrect().ToString();
+        string max = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getTrials().ToString();
         starPanel.SetActive(true);
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
         //finish();
