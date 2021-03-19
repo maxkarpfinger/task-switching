@@ -22,6 +22,7 @@ public class Level1Game : MonoBehaviour
     GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
+    GameObject stars;
     //public SpriteRenderer spriteRenderer;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
@@ -58,6 +59,8 @@ public class Level1Game : MonoBehaviour
         BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
         ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
         SPRITE_DEFAULT_POS = stimulus.transform.position;
+        stars = GameObject.Find("stars_achieved");
+        stars.SetActive(false);
 
         for (int i=0; i<numberOfTrials; i++)
         {
@@ -144,10 +147,33 @@ public class Level1Game : MonoBehaviour
         //also give audio feedback
         string prefix = "Du hast ";
         string mid = " von ";
-        string suffix = " Sternen bekommen!";
+        string suffix = " Tests bestanden!";
         string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
         string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
         starPanel.SetActive(true);
+        stars.SetActive(true);
+
+        if (correct == numberOfTrials)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("5_stars");
+        }
+        if (correct*1.0/numberOfTrials < 1)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("4_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.625)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("3_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.375)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("2_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.125)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
+        }
+
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
         //finish();
     }

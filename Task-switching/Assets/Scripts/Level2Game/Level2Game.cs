@@ -22,6 +22,7 @@ public class Level2Game : MonoBehaviour
     GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
+    GameObject stars;
     string SHAPE_GAME_INFO = "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel spielen, lass uns das Formenspiel spielen.\n" +
         "Auf dem Bildschirm findest Du zwei Formen:\n " +
         "Das ist Emma, Emma ist eine Katze.\n" +
@@ -48,6 +49,8 @@ public class Level2Game : MonoBehaviour
         SHIP = Resources.Load<Sprite>("noColor_ship");
         GRAY_EMMA = Resources.Load<Sprite>("gray_emma");
         SPRITE_DEFAULT_POS = stimulus.transform.position;
+        stars = GameObject.Find("stars_achieved");
+        stars.SetActive(false);
 
         for (int i = 0; i < numberOfTrials; i++)
         {
@@ -134,10 +137,32 @@ public class Level2Game : MonoBehaviour
         //also give audio feedback
         string prefix = "Du hast ";
         string mid = " von ";
-        string suffix = " Sternen bekommen!";
+        string suffix = " Tests bestanden!";
         string number = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getCorrect().ToString();
         string max = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getTrials().ToString();
         starPanel.SetActive(true);
+        stars.SetActive(true);
+
+        if (correct == numberOfTrials)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("5_stars");
+        }
+        if (correct * 1.0 / numberOfTrials < 1)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("4_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.625)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("3_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.375)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("2_stars");
+        }
+        if (correct * 1.0 / numberOfTrials <= 0.125)
+        {
+            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
+        }
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
         //finish();
     }
