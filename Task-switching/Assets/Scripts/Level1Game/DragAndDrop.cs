@@ -48,7 +48,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
+        //Debug.Log("OnDrag");
         //transform.Translate(Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position);
         //canvasGroup.blocksRaycasts = false;
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;

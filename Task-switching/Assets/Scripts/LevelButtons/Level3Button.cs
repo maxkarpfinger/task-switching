@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Level3Button : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Level3Button : MonoBehaviour
     public void OnButtonPress()
     {
         //change to level 3 scene
+        SceneManager.LoadScene("Level3");
     }
 
     public void lockButton()
