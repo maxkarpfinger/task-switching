@@ -58,13 +58,15 @@ public class Level1Game : MonoBehaviour
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
         ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+        BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+        ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
 
         for (int i=0; i<numberOfTrials; i++)
         {
-            int numb = Random.Range(0, 2);
+            int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
         setupTrial();
@@ -120,11 +122,17 @@ public class Level1Game : MonoBehaviour
             //spriteRenderer.sprite = BLUE_EMMA;
             stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
             isCorrectAnswerA = true;
+        }else if(stimulusArray[trial] == 1){
+            //spriteRenderer.sprite = ORANGE_EMMA;
+            stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
+            isCorrectAnswerA = false;
+        }else if(stimulusArray[trial] == 2){
+            stimulus.GetComponent<Image>().sprite = BLUE_LUNA;
+            isCorrectAnswerA = true;
         }
         else
         {
-            //spriteRenderer.sprite = ORANGE_EMMA;
-            stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
+            stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
             isCorrectAnswerA = false;
         }
         //reset stimulus to origin position

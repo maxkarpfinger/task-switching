@@ -30,8 +30,10 @@ public class Level2Game : MonoBehaviour
         "Deine Aufgabe ist es, Emma zu den anderen Katzen(Haus) zu ziehen wenn du Emma siehst.\n" +
         "Das ist ein Schiff. Hilfst du dem Schiff aus Meer zu finden. Deine Aufgabe ist es, das Schiff auf das Meer zu bringen, wenn du das Schiff siehst.\n " +
         "Los geht's!";
-    Sprite SHIP;
-    Sprite GRAY_EMMA;
+    Sprite BLUE_EMMA;
+    Sprite BLUE_LUNA;
+    Sprite ORANGE_LUNA;
+    Sprite ORANGE_EMMA;
     Vector3 SPRITE_DEFAULT_POS;
 
     // Start is called before the first frame update
@@ -46,15 +48,17 @@ public class Level2Game : MonoBehaviour
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(true);
         text.GetComponent<Text>().text = SHAPE_GAME_INFO;
-        SHIP = Resources.Load<Sprite>("noColor_ship");
-        GRAY_EMMA = Resources.Load<Sprite>("gray_emma");
+        BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+        ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+        BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+        ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
 
         for (int i = 0; i < numberOfTrials; i++)
         {
-            int numb = Random.Range(0, 2);
+            int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
         setupTrial();
@@ -107,15 +111,19 @@ public class Level2Game : MonoBehaviour
         Debug.Log("Trial is " + (trial + 1).ToString() + ", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
-            //spriteRenderer.sprite = BLUE_EMMA;
-            stimulus.GetComponent<Image>().sprite = SHIP;
+            stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
+            isCorrectAnswerA = false;
+        }else if(stimulusArray[trial] == 1){
+            stimulus.GetComponent<Image>().sprite = ORANGE_EMMA;
+            isCorrectAnswerA = false;
+        }else if(stimulusArray[trial] == 2){
+            stimulus.GetComponent<Image>().sprite = BLUE_LUNA;
             isCorrectAnswerA = true;
         }
         else
         {
-            //spriteRenderer.sprite = ORANGE_EMMA;
-            stimulus.GetComponent<Image>().sprite = GRAY_EMMA;
-            isCorrectAnswerA = false;
+            stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
+            isCorrectAnswerA = true;
         }
         //reset stimulus to origin position
         stimulus.transform.position = SPRITE_DEFAULT_POS;
