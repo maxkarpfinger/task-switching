@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ImpressumPage.unity
     guid: ea61454f439f14143aca7af315add8ec
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: a09b8dd5c70f68648ae986a3bf7ff3ae
   m_configObjects: {}
