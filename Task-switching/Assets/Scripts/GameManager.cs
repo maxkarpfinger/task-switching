@@ -57,9 +57,9 @@ public class GameManager : MonoBehaviour
     public void incrementProgress()
     {
         levels++;
-        if (levels > 4)
+        if (levels > 5)
         {
-            levels = 4;
+            levels = 5;
         }
     }
 

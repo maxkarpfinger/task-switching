@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Level6Button : MonoBehaviour
 {
@@ -25,7 +26,8 @@ public class Level6Button : MonoBehaviour
 
     public void OnButtonPress()
     {
-        //change to level 5 scene
+        //change to level 6 scene
+        SceneManager.LoadScene("Level6");
     }
 
     public void lockButton()
