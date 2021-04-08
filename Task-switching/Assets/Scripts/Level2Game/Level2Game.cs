@@ -34,7 +34,9 @@ public class Level2Game : MonoBehaviour
     Sprite BLUE_LUNA;
     Sprite ORANGE_LUNA;
     Sprite ORANGE_EMMA;
+    UnityEngine.AudioClip correctSound;
     Vector3 SPRITE_DEFAULT_POS;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -55,7 +57,8 @@ public class Level2Game : MonoBehaviour
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
-
+        correctSound = (UnityEngine.AudioClip) Resources.Load("./sounds/correct");
+        audioSource = GetComponent<AudioSource>();
         for (int i = 0; i < numberOfTrials; i++)
         {
             int numb = Random.Range(0, 4);
@@ -76,11 +79,17 @@ public class Level2Game : MonoBehaviour
         //check according to type of game and chosen image
         if (trialIsCorrect)
         {
+            var clip = Resources.Load("correct") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
             correct++;
         }
         else
         {
             //give feedback
+            var clip = Resources.Load("wrong") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         nextTrial();
     }

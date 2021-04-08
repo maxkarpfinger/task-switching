@@ -7,11 +7,13 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     private bool isDragging;
     private CanvasGroup canvasGroup;
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         //canvasGroup = GetComponent<CanvasGroup>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class DragAndDrop : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         Debug.Log("OnEndDrag");
         //canvasGroup.blocksRaycasts = true;
+        audioSource.Play();
     }
 
 
