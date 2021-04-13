@@ -11,11 +11,11 @@ public class Level4Button : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button = GameObject.Find("Level4Button");
+        /*button = GameObject.Find("Level4Button");
         if (GameManager.get().getLevel() < level)
         {
             lockButton();
-        }
+        }*/
     }
 
     // Update is called once per frame

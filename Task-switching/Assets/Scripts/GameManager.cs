@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     int levels = 0; // store the game progress
+    int page = 0; // store the page of level page {friends:0, food:1, decoration:2}
     private static GameManager instance = null; // static (class level) variable
     public static GameManager get()
     { // static getter (only accessing allowed)
@@ -57,9 +58,9 @@ public class GameManager : MonoBehaviour
     public void incrementProgress()
     {
         levels++;
-        if (levels > 5)
+        if (levels > 17)
         {
-            levels = 5;
+            levels = 17;
         }
     }
 
@@ -72,5 +73,26 @@ public class GameManager : MonoBehaviour
     public int getLevel()
     {
         return levels;
+    }
+
+    public int getPage(){
+        return page;
+    }
+
+    public void incrementPage(){
+        page = page + 1;        
+        //change if more than 3 pages
+        if(page > 2){
+            page = 2;
+        }
+        Debug.Log("Page is incremented to: "+page);
+    }
+
+    public void decrementPage(){
+        page = page - 1;
+        if(page < 0){
+            page = 0;
+        }
+        Debug.Log("Page is decremented to: "+page);
     }
 }

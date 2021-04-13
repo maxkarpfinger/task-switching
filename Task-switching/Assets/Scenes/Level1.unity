@@ -2817,6 +2817,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1982260282}
   - component: {fileID: 1982260283}
+  - component: {fileID: 1982260285}
+  - component: {fileID: 1982260284}
   m_Layer: 0
   m_Name: Level1Manager
   m_TagString: Level1Object
@@ -2850,6 +2852,149 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b881f940d79e0bf45a98c3ed002e414a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &1982260284
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982260281}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.111
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1982260285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982260281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6581ef11ea5017197b20fed1bb0257f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trial: 0
+  correct: 0
+  level: 0
+  stimulusArray: 0000000000000000000000000000000000000000000000000000000000000000
+  colorGame: 1
+  isCorrectAnswerA: 1
+  isSelectedA: 1
+  stimulus: {fileID: 0}
+  targetA: {fileID: 0}
+  targetB: {fileID: 0}
+  trialCounter: {fileID: 0}
+  starPanel: {fileID: 0}
+  text: {fileID: 0}
+  stars: {fileID: 0}
+  COLOR_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Farbenspiel
+    spielen, lass uns das Farbenspiel spielen.\n Auf dem Bildschirm findest Du ein
+    Tier:\nDas ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\n
+    Hilfst du ihr, ins gleich gef\xE4rbte K\xE4stchen(Haus oder Korb) zu finden.
+    Deine Aufgabe ist es, Emma in ihr gef\xE4rbtes K\xE4stchen zu begleiten.\nLos
+    geht's!"
+  SHAPE_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel
+    spielen, lass uns das Formenspiel spielen.\nAuf dem Bildschirm findest Du zwei
+    Tiere:\n Das ist Emma, Emma spielt gerne mit B\xE4llen.\nHilfst Du ihr/ihm, den
+    Ball zu finden.\nDeine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma
+    siest. \nDas ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig
+    zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n
+    Los geht's!"
+  BLUE_EMMA: {fileID: 0}
+  BLUE_LUNA: {fileID: 0}
+  ORANGE_LUNA: {fileID: 0}
+  ORANGE_EMMA: {fileID: 0}
+  SPRITE_DEFAULT_POS: {x: 0, y: 0, z: 0}
+  audioSource: {fileID: 0}
+  level: 0
+  colorGame: 1
 --- !u!1 &1988549534
 GameObject:
   m_ObjectHideFlags: 0

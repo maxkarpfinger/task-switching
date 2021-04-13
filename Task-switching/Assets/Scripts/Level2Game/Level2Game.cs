@@ -36,7 +36,7 @@ public class Level2Game : MonoBehaviour
     Sprite ORANGE_EMMA;
     UnityEngine.AudioClip correctSound;
     Vector3 SPRITE_DEFAULT_POS;
-    public AudioSource audioSource;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -141,7 +141,7 @@ public class Level2Game : MonoBehaviour
     public void finish()
     {
         //return to level page
-        if (correct == numberOfTrials && GameManager.get().getLevel() == level)
+        if (correct == numberOfTrials && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
             GameManager.get().incrementProgress();
         }

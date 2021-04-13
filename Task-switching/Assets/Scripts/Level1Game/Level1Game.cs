@@ -43,6 +43,7 @@ public class Level1Game : MonoBehaviour
     Sprite ORANGE_LUNA;
     Sprite ORANGE_EMMA;
     Vector3 SPRITE_DEFAULT_POS;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +64,7 @@ public class Level1Game : MonoBehaviour
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
+        audioSource = GetComponent<AudioSource>();
 
         for (int i=0; i<numberOfTrials; i++)
         {
@@ -84,11 +86,17 @@ public class Level1Game : MonoBehaviour
         //check according to type of game and chosen image
         if (trialIsCorrect)
         {
+            var clip = Resources.Load("correct") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
             correct++;
         }
         else
         {
             //give feedback
+            var clip = Resources.Load("wrong") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         nextTrial();
     }
@@ -142,7 +150,7 @@ public class Level1Game : MonoBehaviour
     public void finish()
     {
         //return to level page
-        if (correct == numberOfTrials && GameManager.get().getLevel() == level)
+         if (correct == numberOfTrials && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
             GameManager.get().incrementProgress();
         }
