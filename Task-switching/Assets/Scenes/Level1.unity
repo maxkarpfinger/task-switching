@@ -2227,7 +2227,6 @@ GameObject:
   - component: {fileID: 1417880701}
   - component: {fileID: 1417880705}
   - component: {fileID: 1417880704}
-  - component: {fileID: 1417880703}
   - component: {fileID: 1417880702}
   m_Layer: 5
   m_Name: TargetB_1 (1)
@@ -2268,60 +2267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdfc12b9a8bdf2f4d901e26dfb0b3693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1417880703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417880700}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1417880704}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1438498575}
-        m_MethodName: OnButtonPress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1417880704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2976,17 +2921,16 @@ MonoBehaviour:
   stars: {fileID: 0}
   COLOR_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Farbenspiel
     spielen, lass uns das Farbenspiel spielen.\n Auf dem Bildschirm findest Du ein
-    Tier:\nDas ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\n
-    Hilfst du ihr, ins gleich gef\xE4rbte K\xE4stchen(Haus oder Korb) zu finden.
-    Deine Aufgabe ist es, Emma in ihr gef\xE4rbtes K\xE4stchen zu begleiten.\nLos
-    geht's!"
+    Tier:\nDas ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\nHilfst
+    du ihr, ins gleich gef\xE4rbte K\xE4stchen(Haus oder Korb) zu finden. Deine Aufgabe
+    ist es, Emma in ihr gef\xE4rbtes K\xE4stchen zu begleiten.\nLos geht's!"
   SHAPE_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel
     spielen, lass uns das Formenspiel spielen.\nAuf dem Bildschirm findest Du zwei
-    Tiere:\n Das ist Emma, Emma spielt gerne mit B\xE4llen.\nHilfst Du ihr/ihm, den
+    Tiere:\nDas ist Emma, Emma spielt gerne mit B\xE4llen.\nHilfst Du ihr/ihm, den
     Ball zu finden.\nDeine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma
     siest. \nDas ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig
-    zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n
-    Los geht's!"
+    zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\nLos
+    geht's!"
   BLUE_EMMA: {fileID: 0}
   BLUE_LUNA: {fileID: 0}
   ORANGE_LUNA: {fileID: 0}
@@ -3006,7 +2950,6 @@ GameObject:
   - component: {fileID: 1988549535}
   - component: {fileID: 1988549539}
   - component: {fileID: 1988549538}
-  - component: {fileID: 1988549537}
   - component: {fileID: 1988549536}
   m_Layer: 5
   m_Name: TargetA_1 (1)
@@ -3047,60 +2990,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d8dfdd0f337b8646a1351919a2b8559, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1988549537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1988549534}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_SelectedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 1988549538}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1400634121}
-        m_MethodName: OnButtonPress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1988549538
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,10 +53,27 @@ public class Level6Game : MonoBehaviour
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(true);
         setText();
-        BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-        ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
-        BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
-        ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+         //choose sprite according to level page
+        if(GameManager.get().getPage() == 0){
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+        }else if(GameManager.get().getPage() == 1)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+        }
+        else if(GameManager.get().getPage() == 2)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+        }
+        
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);

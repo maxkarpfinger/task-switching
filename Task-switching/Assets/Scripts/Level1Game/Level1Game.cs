@@ -38,10 +38,10 @@ public class Level1Game : MonoBehaviour
         "Deine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma siest. \n" +
         "Das ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n " +
         "Los geht's!";
-    Sprite BLUE_EMMA;
-    Sprite BLUE_LUNA;
-    Sprite ORANGE_LUNA;
-    Sprite ORANGE_EMMA;
+    Sprite BLUE_EMMA; //or blue cake or blue balloon
+    Sprite BLUE_LUNA; //or cupcake or blue party hat
+    Sprite ORANGE_LUNA; //or orange cake or orange balloon
+    Sprite ORANGE_EMMA; // or orange cupcake or orange party hat
     Vector3 SPRITE_DEFAULT_POS;
     AudioSource audioSource;
 
@@ -57,10 +57,7 @@ public class Level1Game : MonoBehaviour
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(true);
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
-        BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-        ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
-        BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
-        ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+        setupTargets();
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
@@ -74,10 +71,35 @@ public class Level1Game : MonoBehaviour
         setupTrial();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void setupTargets(){
+        //choose sprite according to level page
+        if(GameManager.get().getPage() == 0)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cat");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_dog");
+        }else if(GameManager.get().getPage() == 1)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cat");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_dog");
+        }
+        else if(GameManager.get().getPage() == 2)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cat");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_dog");
+
+        }
     }
 
     public void checkCorrectnes()
