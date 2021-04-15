@@ -23,19 +23,20 @@ public class LevelPageManager : MonoBehaviour
         if(GameManager.get().getPage() == 2){
             // decoration page
             level1.GetComponent<Image>().sprite = Resources.Load<Sprite>("level1");
-            level2.GetComponent<Image>().sprite = Resources.Load<Sprite>("level2");
-            level3.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level4.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level5.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level6.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-        }else if(GameManager.get().getPage() == 1){
+            level2.GetComponent<Image>().sprite = Resources.Load<Sprite>("level2deco");
+            level3.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3deko");
+            level4.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3deko");
+            level5.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3deko");
+            level6.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3deko");
+        }
+        else if(GameManager.get().getPage() == 1){
             // food page
             level1.GetComponent<Image>().sprite = Resources.Load<Sprite>("level1");
-            level2.GetComponent<Image>().sprite = Resources.Load<Sprite>("level2");
-            level3.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level4.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level5.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            level6.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
+            level2.GetComponent<Image>().sprite = Resources.Load<Sprite>("level2_food");
+            level3.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3food");
+            level4.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3food");
+            level5.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3food");
+            level6.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3food");
         }else{
             // friends page as default
             level1.GetComponent<Image>().sprite = Resources.Load<Sprite>("level1");
@@ -44,7 +45,6 @@ public class LevelPageManager : MonoBehaviour
             level4.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
             level5.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
             level6.GetComponent<Image>().sprite = Resources.Load<Sprite>("level3");
-            
         }
 
         // make locked level not interactable

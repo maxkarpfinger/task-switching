@@ -52,28 +52,39 @@ public class Level4Game : MonoBehaviour
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(true);
+        targetA = GameObject.Find("TargetA_1");
+        targetB = GameObject.Find("TargetB_1");
         setText();
-         //choose sprite according to level page
-        if(GameManager.get().getPage() == 0){
-            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
-            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
-            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
-        }else if(GameManager.get().getPage() == 1)
+        //choose sprite according to level page
+        if (GameManager.get().getPage() == 0)
         {
             BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
             ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
             BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
             ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cat");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_dog");
         }
-        else if(GameManager.get().getPage() == 2)
+        else if (GameManager.get().getPage() == 1)
         {
-            BLUE_EMMA = Resources.Load<Sprite>("blue_emma");
-            ORANGE_EMMA = Resources.Load<Sprite>("orange_emma");
-            BLUE_LUNA = Resources.Load<Sprite>("blue_luna");
-            ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
+            BLUE_EMMA = Resources.Load<Sprite>("blue_cupcake");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_cupcake");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_cake");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_cake");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cupcake");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_cake");
         }
-        
+        else if (GameManager.get().getPage() == 2)
+        {
+            BLUE_EMMA = Resources.Load<Sprite>("blue_balloon");
+            ORANGE_EMMA = Resources.Load<Sprite>("orange_balloon");
+            BLUE_LUNA = Resources.Load<Sprite>("blue_partyhat");
+            ORANGE_LUNA = Resources.Load<Sprite>("orange_partyhat");
+            targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_balloon");
+            targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_partyhat");
+
+        }
+
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(false);
