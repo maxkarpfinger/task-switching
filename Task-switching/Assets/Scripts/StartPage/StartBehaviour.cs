@@ -25,7 +25,13 @@ public class StartBehaviour : MonoBehaviour
 	
     public void OnImpressumPress()
     {
-	//switch to Impressum page
-	SceneManager.LoadScene("ImpressumPage");
+	    //switch to Impressum page
+	    SceneManager.LoadScene("ImpressumPage");
+    }
+
+    public void OnPartyPress()
+    {
+        //switch to Party page
+        SceneManager.LoadScene("PartyPage");
     }
 }
