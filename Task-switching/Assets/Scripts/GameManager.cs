@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
         // if instance is not yet set, set it and make it persistent between scenes
         if (instance == null)
         {
+            levels = PlayerPrefs.GetInt("levels");
+            page = PlayerPrefs.GetInt("page");
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
         // if instance is not yet set, set it and make it persistent between scenes
         if (instance == null)
         {
+            levels = PlayerPrefs.GetInt("levels");
+            page = PlayerPrefs.GetInt("page");
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -52,7 +56,9 @@ public class GameManager : MonoBehaviour
     // Update the game progress
     public void setGameProgress(int level)
     {
-        levels = level; 
+        levels = level;
+        PlayerPrefs.SetInt("levels", levels);
+        PlayerPrefs.Save();
     }
 
     public void incrementProgress()
@@ -62,11 +68,15 @@ public class GameManager : MonoBehaviour
         {
             levels = 17;
         }
+        PlayerPrefs.SetInt("levels", levels);
+        PlayerPrefs.Save();
     }
 
     public void reset()
     {
         levels = 0;
+        PlayerPrefs.SetInt("levels", levels);
+        PlayerPrefs.Save();
         Debug.Log("reset progress");
     }
 
@@ -85,6 +95,8 @@ public class GameManager : MonoBehaviour
         if(page > 2){
             page = 2;
         }
+        PlayerPrefs.SetInt("page", page);
+        PlayerPrefs.Save();
         Debug.Log("Page is incremented to: "+page);
     }
 
@@ -93,6 +105,8 @@ public class GameManager : MonoBehaviour
         if(page < 0){
             page = 0;
         }
+        PlayerPrefs.SetInt("page", page);
+        PlayerPrefs.Save();
         Debug.Log("Page is decremented to: "+page);
     }
 }
