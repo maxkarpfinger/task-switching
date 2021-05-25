@@ -7,22 +7,27 @@ public class TutorialManager : MonoBehaviour
 {
     int page = 0;
     int numberOfPages = 3;
+    AudioSource audioSource;
 
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();
         refreshInterface();
+        playExplanation();
     }
 
     public void onLeft()
     {
         Debug.Log("onLeft");
+        Debug.Log("page is:" + page);
         page = page - 1;
         if(page < 0)
         {
+            Debug.Log("underflow");
             page = 0;
         }
         refreshInterface();
+        playExplanation();
     }
 
     public void onRight()
@@ -34,6 +39,7 @@ public class TutorialManager : MonoBehaviour
             page = numberOfPages - 1;
         }
         refreshInterface();
+        playExplanation();
     }
 
     public void refreshInterface()
@@ -53,6 +59,22 @@ public class TutorialManager : MonoBehaviour
         {
             GameObject.Find("LeftTutorial").GetComponent<Button>().interactable = true;
             GameObject.Find("RightTutorial").GetComponent<Button>().interactable = true;
+        }
+    }
+
+    public void playExplanation()
+    {
+        if(page == 0)
+        {
+            var clip = Resources.Load("leo") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+        if (page == 1)
+        {
+            var clip = Resources.Load("correct") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 }
