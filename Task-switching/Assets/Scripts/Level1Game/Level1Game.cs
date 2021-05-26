@@ -23,6 +23,7 @@ public class Level1Game : MonoBehaviour
     GameObject starPanel;
     GameObject text;
     GameObject stars;
+    GameObject mode;
     //public SpriteRenderer spriteRenderer;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
@@ -55,6 +56,8 @@ public class Level1Game : MonoBehaviour
         trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
+        mode = GameObject.Find("Mode_Stimulus");
+        mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
         starPanel.SetActive(true);
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         setupTargets();
