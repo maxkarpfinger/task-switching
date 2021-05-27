@@ -23,6 +23,7 @@ public class Level3Game : MonoBehaviour
     GameObject starPanel;
     GameObject text;
     GameObject stars;
+    GameObject mode;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
         "lass uns das Farbenspiel spielen.\n " +
@@ -55,6 +56,7 @@ public class Level3Game : MonoBehaviour
         text.GetComponent<Text>().text = COLOR_GAME_INFO;
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
+        mode = GameObject.Find("Mode_Stimulus");
         //choose sprite according to level page
         if (GameManager.get().getPage() == 0)
         {
@@ -168,7 +170,9 @@ public class Level3Game : MonoBehaviour
                 stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
                 isCorrectAnswerA = false;
             }
-        }else{
+            mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
+        }
+        else{
             if (stimulusArray[trial] == 0)
             {
                 stimulus.GetComponent<Image>().sprite = BLUE_EMMA;
@@ -185,6 +189,7 @@ public class Level3Game : MonoBehaviour
                 stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
                 isCorrectAnswerA = false;
             }
+            mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("shape");
         }
         //reset stimulus to origin position
         stimulus.transform.position = SPRITE_DEFAULT_POS;

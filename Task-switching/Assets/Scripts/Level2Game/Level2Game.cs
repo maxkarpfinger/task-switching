@@ -23,6 +23,7 @@ public class Level2Game : MonoBehaviour
     GameObject starPanel;
     GameObject text;
     GameObject stars;
+    GameObject mode;
     string SHAPE_GAME_INFO = "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel spielen, lass uns das Formenspiel spielen.\n" +
         "Auf dem Bildschirm findest Du zwei Formen:\n " +
         "Das ist Emma, Emma ist eine Katze.\n" +
@@ -53,6 +54,8 @@ public class Level2Game : MonoBehaviour
         setupTargets();
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
+        mode = GameObject.Find("Mode_Stimulus");
+        mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("shape");
         stars.SetActive(false);
         correctSound = (UnityEngine.AudioClip) Resources.Load("./sounds/correct");
         audioSource = GetComponent<AudioSource>();

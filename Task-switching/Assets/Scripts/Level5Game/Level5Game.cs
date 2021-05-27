@@ -23,6 +23,7 @@ public class Level5Game : MonoBehaviour
     GameObject starPanel;
     GameObject text;
     GameObject stars;
+    GameObject mode;
     string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
         "Wir werden ein Farbenspiel spielen, " +
         "lass uns das Farbenspiel spielen.\n " +
@@ -54,6 +55,7 @@ public class Level5Game : MonoBehaviour
         starPanel.SetActive(true);
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
+        mode = GameObject.Find("Mode_Stimulus");
         setText();
         //choose sprite according to level page
         if (GameManager.get().getPage() == 0)
@@ -186,6 +188,7 @@ public class Level5Game : MonoBehaviour
                 stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
                 isCorrectAnswerA = false;
             }
+            mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
         }
         else
         {
@@ -209,6 +212,7 @@ public class Level5Game : MonoBehaviour
                 stimulus.GetComponent<Image>().sprite = ORANGE_LUNA;
                 isCorrectAnswerA = false;
             }
+            mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("shape");
         }
         //reset stimulus to origin position
         stimulus.transform.position = SPRITE_DEFAULT_POS;
