@@ -49,14 +49,14 @@ public class Level2Game : MonoBehaviour
         trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
-        starPanel.SetActive(true);
-        text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+        starPanel.SetActive(false);
+        //text.GetComponent<Text>().text = SHAPE_GAME_INFO;
         setupTargets();
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
         mode = GameObject.Find("Mode_Stimulus");
         mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("shape");
-        stars.SetActive(false);
+        //stars.SetActive(false);
         correctSound = (UnityEngine.AudioClip) Resources.Load("./sounds/correct");
         audioSource = GetComponent<AudioSource>();
         for (int i = 0; i < numberOfTrials; i++)
@@ -64,6 +64,11 @@ public class Level2Game : MonoBehaviour
             int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
+
+        var clip = Resources.Load("shape_game") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
+
         setupTrial();
     }
 
@@ -190,6 +195,7 @@ public class Level2Game : MonoBehaviour
         string number = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getCorrect().ToString();
         string max = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getTrials().ToString();
         starPanel.SetActive(true);
+        stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         if (correct == numberOfTrials)
@@ -213,6 +219,9 @@ public class Level2Game : MonoBehaviour
             stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
         }
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+        var clip = Resources.Load("stars_won") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
         //finish();
     }
 

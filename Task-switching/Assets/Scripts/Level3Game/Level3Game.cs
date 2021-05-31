@@ -52,8 +52,8 @@ public class Level3Game : MonoBehaviour
         trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
-        starPanel.SetActive(true);
-        text.GetComponent<Text>().text = COLOR_GAME_INFO;
+        starPanel.SetActive(false);
+        //text.GetComponent<Text>().text = COLOR_GAME_INFO;
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         mode = GameObject.Find("Mode_Stimulus");
@@ -84,12 +84,11 @@ public class Level3Game : MonoBehaviour
             ORANGE_LUNA = Resources.Load<Sprite>("orange_partyhat");
             targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_balloon");
             targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_partyhat");
-
         }
 
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
-        stars.SetActive(false);
+        //stars.SetActive(false);
         audioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < numberOfTrials; i++)
@@ -97,6 +96,11 @@ public class Level3Game : MonoBehaviour
             int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
+
+        var clip = Resources.Load("color_game") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
+
         setupTrial();
     }
 
@@ -134,8 +138,11 @@ public class Level3Game : MonoBehaviour
         if (trial == 4)
         {
             colorGame = false;
-            starPanel.SetActive(true);
-            text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+            //starPanel.SetActive(true);
+            //text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+            var clip = Resources.Load("shape_game") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         if (trial >= numberOfTrials)
         {
@@ -215,6 +222,7 @@ public class Level3Game : MonoBehaviour
         string number = GameObject.Find("Level3Manager").GetComponent<Level3Game>().getCorrect().ToString();
         string max = GameObject.Find("Level3Manager").GetComponent<Level3Game>().getTrials().ToString();
         starPanel.SetActive(true);
+        stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         if (correct == numberOfTrials)
@@ -238,6 +246,9 @@ public class Level3Game : MonoBehaviour
             stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
         }
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+        var clip = Resources.Load("stars_won") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
         //finish();
     }
 

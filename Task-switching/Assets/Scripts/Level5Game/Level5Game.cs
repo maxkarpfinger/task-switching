@@ -52,11 +52,11 @@ public class Level5Game : MonoBehaviour
         trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
-        starPanel.SetActive(true);
+        starPanel.SetActive(false);
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         mode = GameObject.Find("Mode_Stimulus");
-        setText();
+        //setText();
         //choose sprite according to level page
         if (GameManager.get().getPage() == 0)
         {
@@ -89,7 +89,7 @@ public class Level5Game : MonoBehaviour
 
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         stars = GameObject.Find("stars_achieved");
-        stars.SetActive(false);
+        //stars.SetActive(false);
         audioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < numberOfTrials; i++)
@@ -97,6 +97,11 @@ public class Level5Game : MonoBehaviour
             int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
+
+        var clip = Resources.Load("color_game") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
+
         setupTrial();
     }
 
@@ -131,11 +136,15 @@ public class Level5Game : MonoBehaviour
     {
         if (colorGame)
         {
-            text.GetComponent<Text>().text = COLOR_GAME_INFO;
+            var clip = Resources.Load("color_game") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         else
         {
-            text.GetComponent<Text>().text = SHAPE_GAME_INFO;
+            var clip = Resources.Load("shape_game") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 
@@ -146,7 +155,7 @@ public class Level5Game : MonoBehaviour
         if (trial %2 == 0 && trial != 0)
         {
             colorGame = !colorGame;
-            starPanel.SetActive(true);
+            //starPanel.SetActive(true);
             setText();
             //audio
         }
@@ -238,6 +247,7 @@ public class Level5Game : MonoBehaviour
         string number = getCorrect().ToString();
         string max = getTrials().ToString();
         starPanel.SetActive(true);
+        stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         if (correct == numberOfTrials)
@@ -261,7 +271,9 @@ public class Level5Game : MonoBehaviour
             stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
         }
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
-        //finish();
+        var clip = Resources.Load("stars_won") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public void selectA()

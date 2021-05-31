@@ -58,12 +58,12 @@ public class Level1Game : MonoBehaviour
         text = GameObject.Find("StarAmount_1");
         mode = GameObject.Find("Mode_Stimulus");
         mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
-        starPanel.SetActive(true);
-        text.GetComponent<Text>().text = COLOR_GAME_INFO;
+        starPanel.SetActive(false);
+        //text.GetComponent<Text>().text = COLOR_GAME_INFO;
         setupTargets();
         SPRITE_DEFAULT_POS = stimulus.transform.position;
-        stars = GameObject.Find("stars_achieved");
-        stars.SetActive(false);
+        //stars = GameObject.Find("stars_achieved");
+        //stars.SetActive(false);
         audioSource = GetComponent<AudioSource>();
       
         for (int i=0; i<numberOfTrials; i++)
@@ -71,6 +71,11 @@ public class Level1Game : MonoBehaviour
             int numb = Random.Range(0, 4);
             stimulusArray[i] = numb;
         }
+
+        var clip = Resources.Load("color_game") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
+
         setupTrial();
     }
 
@@ -192,6 +197,7 @@ public class Level1Game : MonoBehaviour
         string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
         string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
         starPanel.SetActive(true);
+        stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         if (correct == numberOfTrials)
@@ -216,6 +222,10 @@ public class Level1Game : MonoBehaviour
         }
 
         text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+
+        var clip = Resources.Load("stars_won") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
         //finish();
     }
 
