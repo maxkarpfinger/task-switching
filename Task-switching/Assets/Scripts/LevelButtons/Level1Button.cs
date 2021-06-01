@@ -21,6 +21,7 @@ public class Level1Button : MonoBehaviour
     public void OnButtonPress()
     {
         // change to level 1 scene
+        Debug.Log("reload level");
         SceneManager.LoadScene("Level1");
     }
 }

@@ -19,7 +19,6 @@ public class Level1Game : MonoBehaviour
     GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
-    GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
     GameObject stars;
@@ -53,7 +52,6 @@ public class Level1Game : MonoBehaviour
         //spriteRenderer = GameObject.Find("blue_emma").GetComponent<SpriteRenderer>();
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
-        trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         mode = GameObject.Find("Mode_Stimulus");
@@ -146,7 +144,6 @@ public class Level1Game : MonoBehaviour
             showStars();
             return;
         }
-        trialCounter.GetComponent<Text>().text = (trial +1).ToString();
         setupTrial();
     }
 
