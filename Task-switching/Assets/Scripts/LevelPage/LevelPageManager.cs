@@ -40,11 +40,11 @@ public class LevelPageManager : MonoBehaviour
             sticker6.GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_sticker");
         }else{
             // friends page as default
-            sticker1.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_giraffe");
+            sticker1.GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
             sticker2.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_giraffe");
             sticker3.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_elephant");
             sticker4.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_elephant");
-            sticker5.GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
+            sticker5.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_giraffe");
             sticker6.GetComponent<Image>().sprite = Resources.Load<Sprite>("presents");
         }
 

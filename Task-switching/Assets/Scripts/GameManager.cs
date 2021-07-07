@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         levels++;
         if (levels > 17)
         {
-            levels = 17;
+            levels = 18;
         }
         PlayerPrefs.SetInt("levels", levels);
         PlayerPrefs.Save();
