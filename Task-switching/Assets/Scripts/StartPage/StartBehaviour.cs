@@ -20,7 +20,16 @@ public class StartBehaviour : MonoBehaviour
     public void OnButtonPress()
     {
         //switch to Level page
-        SceneManager.LoadScene("LevelPage");
+        if(GameManager.get().getStarts() > 1)
+        {
+            SceneManager.LoadScene("LevelPage");
+        }
+        else
+        {
+            GameManager.get().setStarts(2);
+            SceneManager.LoadScene("Tutorial");
+        }
+        
     }
 	
     public void OnImpressumPress()

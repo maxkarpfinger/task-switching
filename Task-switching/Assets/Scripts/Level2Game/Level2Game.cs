@@ -24,13 +24,6 @@ public class Level2Game : MonoBehaviour
     GameObject text;
     GameObject stars;
     GameObject mode;
-    string SHAPE_GAME_INFO = "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel spielen, lass uns das Formenspiel spielen.\n" +
-        "Auf dem Bildschirm findest Du zwei Formen:\n " +
-        "Das ist Emma, Emma ist eine Katze.\n" +
-        "Hilfst Du ihr zu den anderen Katzen zu kommen?.\n" +
-        "Deine Aufgabe ist es, Emma zu den anderen Katzen(Haus) zu ziehen wenn du Emma siehst.\n" +
-        "Das ist ein Schiff. Hilfst du dem Schiff aus Meer zu finden. Deine Aufgabe ist es, das Schiff auf das Meer zu bringen, wenn du das Schiff siehst.\n " +
-        "Los geht's!";
     Sprite BLUE_EMMA;
     Sprite BLUE_LUNA;
     Sprite ORANGE_LUNA;
@@ -197,6 +190,8 @@ public class Level2Game : MonoBehaviour
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
+
+        GameObject.Find("Back").GetComponent<Button>().interactable = false;
 
         if (correct == numberOfTrials)
         {

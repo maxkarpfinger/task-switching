@@ -23,21 +23,6 @@ public class Level1Game : MonoBehaviour
     GameObject text;
     GameObject stars;
     GameObject mode;
-    //public SpriteRenderer spriteRenderer;
-    string COLOR_GAME_INFO = "Lass uns gemeinsam etwas spielen. " +
-        "Wir werden ein Farbenspiel spielen, " +
-        "lass uns das Farbenspiel spielen.\n " +
-        "Auf dem Bildschirm findest Du ein Tier:\n" +
-        "Das ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\n Hilfst du " +
-        "ihr, ins gleich gefärbte Kästchen(Haus oder Korb) zu finden. Deine Aufgabe ist es, Emma in ihr gefärbtes Kästchen zu begleiten.\n" +
-        "Los geht's!" ;
-    string SHAPE_GAME_INFO = "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel spielen, lass uns das Formenspiel spielen.\n" +
-        "Auf dem Bildschirm findest Du zwei Tiere:\n " +
-        "Das ist Emma, Emma spielt gerne mit Bällen.\n" +
-        "Hilfst Du ihr/ihm, den Ball zu finden.\n" +
-        "Deine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma siest. \n" +
-        "Das ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\n " +
-        "Los geht's!";
     Sprite BLUE_EMMA; //or blue cake or blue balloon
     Sprite BLUE_LUNA; //or cupcake or blue party hat
     Sprite ORANGE_LUNA; //or orange cake or orange balloon
@@ -196,6 +181,8 @@ public class Level1Game : MonoBehaviour
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
+
+        GameObject.Find("Back").GetComponent<Button>().interactable = false;
 
         if (correct == numberOfTrials)
         {

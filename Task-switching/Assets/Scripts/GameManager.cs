@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     int levels = 0; // store the game progress
     int page = 0; // store the page of level page {friends:0, food:1, decoration:2}
+    int starts = 0; // store the number of times the app has been started since reset
     private static GameManager instance = null; // static (class level) variable
     public static GameManager get()
     { // static getter (only accessing allowed)
@@ -20,6 +21,11 @@ public class GameManager : MonoBehaviour
         {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
+            starts = PlayerPrefs.GetInt("starts");
+            starts = starts + 1;
+            Debug.Log("Awake() start:" + starts);
+            PlayerPrefs.SetInt("starts", starts);
+            PlayerPrefs.Save();
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -38,6 +44,9 @@ public class GameManager : MonoBehaviour
         {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
+            starts = PlayerPrefs.GetInt("starts");
+            starts = starts + 1;
+            Debug.Log("Start() start:" + starts);
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -76,7 +85,9 @@ public class GameManager : MonoBehaviour
     public void reset()
     {
         levels = 0;
+        starts = 0;
         PlayerPrefs.SetInt("levels", levels);
+        PlayerPrefs.SetInt("starts", starts);
         PlayerPrefs.Save();
         Debug.Log("reset progress");
     }
@@ -109,5 +120,16 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("page", page);
         PlayerPrefs.Save();
         Debug.Log("Page is decremented to: "+page);
+    }
+
+    public int getStarts()
+    {
+        //   return starts;
+        return starts;
+    }
+
+    public void setStarts(int i)
+    {
+        starts = i;
     }
 }

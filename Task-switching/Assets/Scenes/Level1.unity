@@ -1211,7 +1211,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5a00b69e955c5874390d910a3c2e03ab, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.135
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1876,7 +1876,7 @@ GameObject:
   - component: {fileID: 1409415511}
   - component: {fileID: 1409415510}
   m_Layer: 5
-  m_Name: Back_1
+  m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2520,7 +2520,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1982260282}
   - component: {fileID: 1982260283}
-  - component: {fileID: 1982260285}
   - component: {fileID: 1982260284}
   m_Layer: 0
   m_Name: Level1Manager
@@ -2651,52 +2650,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1982260285
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1982260281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6581ef11ea5017197b20fed1bb0257f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  trial: 0
-  correct: 0
-  level: 0
-  stimulusArray: 0000000000000000000000000000000000000000000000000000000000000000
-  colorGame: 1
-  isCorrectAnswerA: 1
-  isSelectedA: 1
-  stimulus: {fileID: 0}
-  targetA: {fileID: 0}
-  targetB: {fileID: 0}
-  trialCounter: {fileID: 0}
-  starPanel: {fileID: 0}
-  text: {fileID: 0}
-  stars: {fileID: 0}
-  COLOR_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Farbenspiel
-    spielen, lass uns das Farbenspiel spielen.\n Auf dem Bildschirm findest Du ein
-    Tier:\nDas ist die Katze Emma, Emma ist manchmal blau, und manchmal orange.\nHilfst
-    du ihr, ins gleich gef\xE4rbte K\xE4stchen(Haus oder Korb) zu finden. Deine Aufgabe
-    ist es, Emma in ihr gef\xE4rbtes K\xE4stchen zu begleiten.\nLos geht's!"
-  SHAPE_GAME_INFO: "Lass uns gemeinsam etwas spielen. Wir werden ein Formenspiel
-    spielen, lass uns das Formenspiel spielen.\nAuf dem Bildschirm findest Du zwei
-    Tiere:\nDas ist Emma, Emma spielt gerne mit B\xE4llen.\nHilfst Du ihr/ihm, den
-    Ball zu finden.\nDeine Aufgabe ist es, auf den Ball zu tippen, wenn Due Emma
-    siest. \nDas ist Luna, Luna spielt gerne mit Zweigen.Hilfst Du ihr/ihm, den Zweig
-    zu finden. Deine Aufgabe ist es, auf den Zweig zu tippen, wenn Du Luna siest.\nLos
-    geht's!"
-  BLUE_EMMA: {fileID: 0}
-  BLUE_LUNA: {fileID: 0}
-  ORANGE_LUNA: {fileID: 0}
-  ORANGE_EMMA: {fileID: 0}
-  SPRITE_DEFAULT_POS: {x: 0, y: 0, z: 0}
-  audioSource: {fileID: 0}
-  level: 0
-  colorGame: 1
 --- !u!1 &1988549534
 GameObject:
   m_ObjectHideFlags: 0
