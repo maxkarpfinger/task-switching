@@ -202,7 +202,7 @@ public class Level4Game : MonoBehaviour
     public void finish()
     {
         //return to level page
-        if (correct == numberOfTrials && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
+        if (correct * 1.0 / numberOfTrials >= 0.75 && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
             GameManager.get().incrementProgress();
         }
@@ -216,38 +216,70 @@ public class Level4Game : MonoBehaviour
         string prefix = "Du hast ";
         string mid = " von ";
         string suffix = " Tests bestanden!";
-        string number = getCorrect().ToString();
-        string max = getTrials().ToString();
+        string number = GameObject.Find("Level4Manager").GetComponent<Level4Game>().getCorrect().ToString();
+        string max = GameObject.Find("Level4Manager").GetComponent<Level4Game>().getTrials().ToString();
+        int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         GameObject.Find("Back").GetComponent<Button>().interactable = false;
 
-        if (correct == numberOfTrials)
+        switch (page)
         {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("5_stars");
+            case 0:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_elephant");
+                break;
+            case 1:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("cupcake4_sticker");
+                break;
+            case 2:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("hats1_sticker");
+                break;
+            default:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
+                break;
         }
-        if (correct * 1.0 / numberOfTrials < 1)
+
+        if (level + 6 * GameManager.get().getPage() < GameManager.get().getLevel())
         {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("4_stars");
+            if (correct * 1.0 / numberOfTrials >= 0.75)
+            {
+                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_already_won") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_already_lose") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
         }
-        if (correct * 1.0 / numberOfTrials <= 0.625)
+        else
         {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("3_stars");
+            if (correct * 1.0 / numberOfTrials >= 0.75)
+            {
+                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_won") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+                stars.GetComponent<Image>().color = UnityEngine.Color.black;
+            }
+            else
+            {
+                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_lose") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+                stars.GetComponent<Image>().color = UnityEngine.Color.black;
+            }
         }
-        if (correct * 1.0 / numberOfTrials <= 0.375)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("2_stars");
-        }
-        if (correct * 1.0 / numberOfTrials <= 0.125)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
-        }
-        text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
-        var clip = Resources.Load("stars_won") as AudioClip;
-        audioSource.clip = clip;
-        audioSource.Play();
+
+        //text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+
         //finish();
     }
 

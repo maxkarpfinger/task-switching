@@ -162,7 +162,7 @@ public class Level1Game : MonoBehaviour
     public void finish()
     {
         //return to level page
-         if (correct == numberOfTrials && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
+         if (correct * 1.0 / numberOfTrials >= 0.75 && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
             GameManager.get().incrementProgress();
         }
@@ -178,38 +178,67 @@ public class Level1Game : MonoBehaviour
         string suffix = " Tests bestanden!";
         string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
         string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
+        int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
         GameObject.Find("Back").GetComponent<Button>().interactable = false;
 
-        if (correct == numberOfTrials)
+        switch (page)
         {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("5_stars");
-        }
-        if (correct*1.0/numberOfTrials < 1)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("4_stars");
-        }
-        if (correct * 1.0 / numberOfTrials <= 0.625)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("3_stars");
-        }
-        if (correct * 1.0 / numberOfTrials <= 0.375)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("2_stars");
-        }
-        if (correct * 1.0 / numberOfTrials <= 0.125)
-        {
-            stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("1_star");
+            case 0:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
+                break;
+            case 1:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("cupcake1_sticker");
+                break;
+            case 2:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("balloon1_sticker");
+                break;
+            default:
+                stars.GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
+                break;
         }
 
-        text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+        if (level + 6 * GameManager.get().getPage() < GameManager.get().getLevel())
+        {
+            if (correct * 1.0 / numberOfTrials >= 0.75)
+            {
+                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_already_won") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_already_lose") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            if (correct * 1.0 / numberOfTrials >= 0.75)
+            {
+                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_won") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+            }
+            else
+            {
+                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                var clip = Resources.Load("sticker_lose") as AudioClip;
+                audioSource.clip = clip;
+                audioSource.Play();
+                stars.GetComponent<Image>().color = UnityEngine.Color.black;
+            }
+        }
 
-        var clip = Resources.Load("stars_won") as AudioClip;
-        audioSource.clip = clip;
-        audioSource.Play();
+        //text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
+
         //finish();
     }
 

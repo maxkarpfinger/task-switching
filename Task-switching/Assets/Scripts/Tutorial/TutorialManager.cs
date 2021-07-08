@@ -62,12 +62,17 @@ public class TutorialManager : MonoBehaviour
             GameObject.Find("LeftTutorial").GetComponent<Button>().interactable = true;
             GameObject.Find("RightTutorial").GetComponent<Button>().interactable = true;
         }
-        if(page == 2 || page == 3)
+        if(page == 2)
         {
             GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
             GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("colorGameTutorial");
             GameObject.Find("background").GetComponent<VideoPlayer>().Play();
             
+        }else if (page == 3)
+        {
+            GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
+            GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("shapeGameTutorial");
+            GameObject.Find("background").GetComponent<VideoPlayer>().Play();
         }
         else
         {
@@ -87,13 +92,21 @@ public class TutorialManager : MonoBehaviour
         }
         if (page == 1)
         {
-            var clip = Resources.Load("correct") as AudioClip;
+            var clip = Resources.Load("leo2") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
         }
         if(page == 2)
         {
-            videoColorGame();
+            var clip = Resources.Load("color_game_tutorial") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+        if(page == 3)
+        {
+            var clip = Resources.Load("shape_game_tutorial") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
     }
 

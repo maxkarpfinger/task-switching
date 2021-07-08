@@ -6,9 +6,19 @@ using UnityEngine.UI;
 public class LevelPageManager : MonoBehaviour
 {
     //GameObject levelPageManager;
+    AudioSource audioSource;
 
     void Start(){
         refreshLevelButtons();
+        audioSource = GetComponent<AudioSource>();
+    }
+
+    public void playResetSound()
+    {
+        //audioSource = GetComponent<AudioSource>();
+        var clip = Resources.Load("reset_sound") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public void refreshLevelButtons(){

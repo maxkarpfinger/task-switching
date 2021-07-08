@@ -23,5 +23,6 @@ public class ResetBehaviour : MonoBehaviour
         // reset game advancement counter i.e. level counter
         // prompt user if they really want to reset
         panel.SetActive(true);
+        GameObject.Find("LevelPageManager").GetComponent<LevelPageManager>().playResetSound();
     }
 }
