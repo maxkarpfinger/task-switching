@@ -215,6 +215,7 @@ public class Level2Game : MonoBehaviour
             if (correct * 1.0 / numberOfTrials >= 0.75)
             {
                 // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                stars.GetComponent<Image>().color = UnityEngine.Color.white;
                 var clip = Resources.Load("sticker_already_won") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
@@ -222,6 +223,7 @@ public class Level2Game : MonoBehaviour
             else
             {
                 // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                stars.GetComponent<Image>().color = UnityEngine.Color.white;
                 var clip = Resources.Load("sticker_already_lose") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
@@ -233,6 +235,7 @@ public class Level2Game : MonoBehaviour
             if (correct * 1.0 / numberOfTrials >= 0.75)
             {
                 // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                stars.GetComponent<Image>().color = UnityEngine.Color.white;
                 var clip = Resources.Load("sticker_won") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
