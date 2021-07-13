@@ -199,14 +199,17 @@ public class Level4Game : MonoBehaviour
         stimulus.transform.position = SPRITE_DEFAULT_POS;
     }
 
-    public void finish()
+    public void finish(bool backToMenu)
     {
         //return to level page
         if (correct * 1.0 / numberOfTrials >= 0.75 && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
             GameManager.get().incrementProgress();
         }
-        SceneManager.LoadScene("LevelPage");
+        if (backToMenu)
+        {
+            SceneManager.LoadScene("LevelPage");
+        }
     }
 
     public void showStars()
@@ -223,6 +226,7 @@ public class Level4Game : MonoBehaviour
         stars = GameObject.Find("stars_achieved");
         stars.SetActive(true);
 
+        GameObject nextLevel = GameObject.Find("next_level");
         GameObject.Find("Back").GetComponent<Button>().interactable = false;
 
         switch (page)
@@ -243,6 +247,7 @@ public class Level4Game : MonoBehaviour
 
         if (level + 6 * GameManager.get().getPage() < GameManager.get().getLevel())
         {
+            //revisiting this level           
             if (correct * 1.0 / numberOfTrials >= 0.75)
             {
                 // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
@@ -250,6 +255,7 @@ public class Level4Game : MonoBehaviour
                 var clip = Resources.Load("sticker_already_won") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
+                nextLevel.GetComponent<Button>().interactable = true;
             }
             else
             {
@@ -258,25 +264,28 @@ public class Level4Game : MonoBehaviour
                 var clip = Resources.Load("sticker_already_lose") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
+                nextLevel.GetComponent<Button>().interactable = true;
             }
         }
         else
         {
             if (correct * 1.0 / numberOfTrials >= 0.75)
             {
-                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                // case when sticker has not been unlocked yet
+                stars.GetComponent<Image>().color = UnityEngine.Color.white;
                 var clip = Resources.Load("sticker_won") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
-                stars.GetComponent<Image>().color = UnityEngine.Color.white;
+                nextLevel.GetComponent<Button>().interactable = true;
             }
             else
             {
-                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                // case when sticker is still locked
                 var clip = Resources.Load("sticker_lose") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
                 stars.GetComponent<Image>().color = UnityEngine.Color.black;
+                nextLevel.GetComponent<Button>().interactable = false;
             }
         }
 

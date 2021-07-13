@@ -15,7 +15,7 @@ public class StarOk3 : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Level3Manager").GetComponent<Level3Game>().finish();
+            GameObject.Find("Level3Manager").GetComponent<Level3Game>().finish(true);
         }
     }
 }

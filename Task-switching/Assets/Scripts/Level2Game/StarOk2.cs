@@ -27,7 +27,7 @@ public class StarOk2 : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Level2Manager").GetComponent<Level2Game>().finish();
+            GameObject.Find("Level2Manager").GetComponent<Level2Game>().finish(true);
         }
     }
 }

@@ -84,30 +84,52 @@ public class TutorialManager : MonoBehaviour
 
     public void playExplanation()
     {
-        if(page == 0)
+        resetRightTutorialButton();
+        if (page == 0)
         {
             var clip = Resources.Load("leo") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
+            StartCoroutine(StartMethod(20.0F));
         }
         if (page == 1)
         {
             var clip = Resources.Load("leo2") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
+            StartCoroutine(StartMethod(24.0F));
         }
         if(page == 2)
         {
             var clip = Resources.Load("color_game_tutorial") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
+            StartCoroutine(StartMethod(66.0F));
         }
         if(page == 3)
         {
             var clip = Resources.Load("shape_game_tutorial") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
+            StartCoroutine(StartMethod(33.0F));
         }
+    }
+
+    private void resetRightTutorialButton()
+    {
+        GameObject.Find("RightTutorial").GetComponent<Animation>().Stop();
+        GameObject.Find("RightTutorial").transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+
+    private IEnumerator StartMethod(float clipLength)
+    {
+        yield return new WaitForSeconds(clipLength);
+        playAnimation();
+    }
+
+    private void playAnimation()
+    {
+        GameObject.Find("RightTutorial").GetComponent<Animation>().Play();
     }
 
     private void videoColorGame()

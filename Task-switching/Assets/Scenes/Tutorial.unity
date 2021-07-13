@@ -177,7 +177,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.504
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -709,6 +709,7 @@ GameObject:
   - component: {fileID: 822230631}
   - component: {fileID: 822230630}
   - component: {fileID: 822230629}
+  - component: {fileID: 822230632}
   m_Layer: 5
   m_Name: RightTutorial
   m_TagString: Untagged
@@ -828,6 +829,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 822230627}
   m_CullTransparentMesh: 0
+--- !u!111 &822230632
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822230627}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: c5109539a7514514491d8e239b90fc07, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c5109539a7514514491d8e239b90fc07, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &873602778
 GameObject:
   m_ObjectHideFlags: 0

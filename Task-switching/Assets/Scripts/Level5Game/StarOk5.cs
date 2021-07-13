@@ -15,7 +15,7 @@ public class StarOk5 : MonoBehaviour
         }
         else
         {
-            GameObject.Find("Level5Manager").GetComponent<Level5Game>().finish();
+            GameObject.Find("Level5Manager").GetComponent<Level5Game>().finish(true);
         }
     }
 }
