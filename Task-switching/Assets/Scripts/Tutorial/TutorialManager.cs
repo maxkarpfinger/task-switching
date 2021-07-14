@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
     int page = 0;
-    int numberOfPages = 4;
+    int numberOfPages = 5;
     AudioSource audioSource;
+    private IEnumerator coroutine;
 
     void Start()
     {
@@ -35,7 +37,8 @@ public class TutorialManager : MonoBehaviour
     {
         Debug.Log("onRight");
         page = page + 1;
-        if(page >= numberOfPages)
+        StopCoroutine(coroutine);
+        if (page >= numberOfPages)
         {
             page = numberOfPages - 1;
         }
@@ -74,6 +77,10 @@ public class TutorialManager : MonoBehaviour
             GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("shapeGameTutorial");
             GameObject.Find("background").GetComponent<VideoPlayer>().Play();
         }
+        else if(page == 4)
+        {
+            SceneManager.LoadScene("LevelPractice");
+        }
         else
         {
             GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
@@ -90,28 +97,32 @@ public class TutorialManager : MonoBehaviour
             var clip = Resources.Load("leo") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
-            StartCoroutine(StartMethod(20.0F));
+            coroutine = StartMethod(20.0f);
+            StartCoroutine(coroutine);
         }
         if (page == 1)
         {
             var clip = Resources.Load("leo2") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
-            StartCoroutine(StartMethod(24.0F));
+            coroutine = StartMethod(24.0f);
+            StartCoroutine(coroutine);
         }
         if(page == 2)
         {
             var clip = Resources.Load("color_game_tutorial") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
-            StartCoroutine(StartMethod(66.0F));
+            coroutine = StartMethod(66.0f);
+            StartCoroutine(coroutine);
         }
         if(page == 3)
         {
             var clip = Resources.Load("shape_game_tutorial") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
-            StartCoroutine(StartMethod(33.0F));
+            coroutine = StartMethod(33.0f);
+            StartCoroutine(coroutine);
         }
     }
 
