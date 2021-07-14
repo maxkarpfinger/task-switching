@@ -97,20 +97,20 @@ public class LevelPageManager : MonoBehaviour
         // change sprites of navigation buttons
         if (GameManager.get().getPage() == 0)
         {
-            GameObject.Find("RightPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_sticker");
+            GameObject.Find("RightPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_navigation");
             GameObject.Find("LeftPage").GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
         }
         if (GameManager.get().getPage() == 1)
         {
-            GameObject.Find("RightPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("hats2_sticker");
-            GameObject.Find("LeftPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_sticker");
+            GameObject.Find("RightPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("deco_navigation");
+            GameObject.Find("LeftPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("lion_navigation");
             GameObject.Find("LeftPage").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
             GameObject.Find("RightPage").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
         if (GameManager.get().getPage() == 2)
         {
             GameObject.Find("RightPage").GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
-            GameObject.Find("LeftPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_sticker");
+            GameObject.Find("LeftPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_navigation");
         }
 
     }
