@@ -28,8 +28,6 @@ public class GameManager : MonoBehaviour
             starts = starts + 1;
             PlayerPrefs.SetInt("starts", starts);
             PlayerPrefs.Save();
-            //exitPanel = GameObject.Find("Exit_Panel");
-            //displayExitPanel(false);
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -38,7 +36,6 @@ public class GameManager : MonoBehaviour
             // if instance is already set and this is not the same object, destroy it
             if (this != instance) { Destroy(gameObject); }
         }
-        hidePanel();
     }
 
     // Start is called before the first frame update
@@ -51,8 +48,6 @@ public class GameManager : MonoBehaviour
             page = PlayerPrefs.GetInt("page");
             starts = PlayerPrefs.GetInt("starts");
             starts = starts + 1;
-            //exitPanel = GameObject.Find("Exit_Panel");
-            //displayExitPanel(false);
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -61,7 +56,6 @@ public class GameManager : MonoBehaviour
             // if instance is already set and this is not the same object, destroy it
             if (this != instance) { Destroy(gameObject); }
         }
-        hidePanel();
     }
 
     // Update is called once per frame
@@ -139,46 +133,4 @@ public class GameManager : MonoBehaviour
     {
         starts = i;
     }
-
-    public void playExitSound()
-    {
-
-    }
-
-    public void showPanel()
-    {
-        playExitSound();
-        Debug.Log("after playExitSound");
-        Image image = GameObject.Find("Bling").GetComponent<Image>();
-        image.color = new Color(image.color.r, image.color.g, image.color.b, 1f);
-        Debug.Log("after making panel visible");
-
-        Image confirm = GameObject.Find("ExitConfirm").GetComponent<Image>();
-        confirm.color = new Color(confirm.color.r, confirm.color.g, confirm.color.b, 0f);
-        GameObject.Find("ExitConfirm").GetComponent<Button>().interactable = true;
-
-        Image cancel = GameObject.Find("ExitCancel").GetComponent<Image>();
-        cancel.color = new Color(cancel.color.r, cancel.color.g, cancel.color.b, 1f);
-        GameObject.Find("ExitCancel").GetComponent<Button>().interactable = true;
-    }
-
-    public void hidePanel()
-    {
-        Image image = GameObject.Find("Bling").GetComponent<Image>();
-        image.color = new Color(image.color.r, image.color.g, image.color.b, 0f);
-
-        Image confirm = GameObject.Find("ExitConfirm").GetComponent<Image>();
-        confirm.color = new Color(confirm.color.r, confirm.color.g, confirm.color.b, 0f);
-        GameObject.Find("ExitConfirm").GetComponent<Button>().interactable = false;
-
-        Image cancel = GameObject.Find("ExitCancel").GetComponent<Image>();
-        cancel.color = new Color(cancel.color.r, cancel.color.g, cancel.color.b, 0f);
-        GameObject.Find("ExitCancel").GetComponent<Button>().interactable = false;
-    }
-
-    public void exit()
-    {
-        Application.Quit();
-    }
-
 }

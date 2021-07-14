@@ -43,4 +43,10 @@ public class StartBehaviour : MonoBehaviour
         //switch to Party page
         SceneManager.LoadScene("PartyPage");
     }
+
+    public void OnExitPress()
+    {
+        //switch to Exit page
+        SceneManager.LoadScene("ExitPage");
+    }
 }
