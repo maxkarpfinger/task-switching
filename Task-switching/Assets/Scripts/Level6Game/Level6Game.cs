@@ -11,7 +11,7 @@ public class Level6Game : MonoBehaviour
     int trial = 0;
     int correct = 0;
     int level = 5;
-    static int numberOfTrials = 6;
+    static int numberOfTrials = 10;
     int[] stimulusArray = new int[numberOfTrials];
     bool colorGame = false;
     bool isCorrectAnswerA = true;
