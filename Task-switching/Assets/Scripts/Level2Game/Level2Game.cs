@@ -13,7 +13,6 @@ public class Level2Game : MonoBehaviour
     int level = 1;
     static int numberOfTrials = 8;
     int[] stimulusArray = new int[numberOfTrials];
-    bool colorGame = false;
     bool isCorrectAnswerA = true;
     bool isSelectedA = true;
     GameObject stimulus;
@@ -185,11 +184,6 @@ public class Level2Game : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        string prefix = "Du hast ";
-        string mid = " von ";
-        string suffix = " Tests bestanden!";
-        string number = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getCorrect().ToString();
-        string max = GameObject.Find("Level2Manager").GetComponent<Level2Game>().getTrials().ToString();
         int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");

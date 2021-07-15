@@ -19,7 +19,6 @@ public class Level6Game : MonoBehaviour
     GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
-    GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
     GameObject stars;
@@ -35,7 +34,6 @@ public class Level6Game : MonoBehaviour
     void Start()
     {
         stimulus = GameObject.Find("Stimulus_1");
-        trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(false);
@@ -122,16 +120,20 @@ public class Level6Game : MonoBehaviour
     {
         if (colorGame)
         {
-            var clip = Resources.Load("color_game") as AudioClip;
-            audioSource.clip = clip;
-            audioSource.Play();
+            StartCoroutine(StartMethod(0.35F, "color_game"));
         }
         else
         {
-            var clip = Resources.Load("shape_game") as AudioClip;
-            audioSource.clip = clip;
-            audioSource.Play();
+            StartCoroutine(StartMethod(0.35F, "shape_game"));
         }
+    }
+
+    private IEnumerator StartMethod(float clipLength, String resource)
+    {
+        yield return new WaitForSeconds(clipLength);
+        var clip = Resources.Load(resource) as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
     }
 
     public void nextTrial()
@@ -150,7 +152,6 @@ public class Level6Game : MonoBehaviour
             showStars();
             return;
         }
-        trialCounter.GetComponent<Text>().text = (trial + 1).ToString();
         setupTrial();
     }
 
@@ -231,11 +232,6 @@ public class Level6Game : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        string prefix = "Du hast ";
-        string mid = " von ";
-        string suffix = " Tests bestanden!";
-        string number = GameObject.Find("Level6Manager").GetComponent<Level6Game>().getCorrect().ToString();
-        string max = GameObject.Find("Level6Manager").GetComponent<Level6Game>().getTrials().ToString();
         int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");

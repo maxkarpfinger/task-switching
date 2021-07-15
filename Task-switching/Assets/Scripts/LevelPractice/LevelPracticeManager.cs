@@ -19,7 +19,6 @@ public class LevelPracticeManager : MonoBehaviour
     GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
-    GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
     GameObject stars;
@@ -35,7 +34,6 @@ public class LevelPracticeManager : MonoBehaviour
     void Start()
     {
         stimulus = GameObject.Find("Stimulus_1");
-        trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(false);
@@ -135,7 +133,6 @@ public class LevelPracticeManager : MonoBehaviour
             showStars();
             return;
         }
-        trialCounter.GetComponent<Text>().text = (trial + 1).ToString();
         setupTrial();
     }
 
@@ -216,9 +213,6 @@ public class LevelPracticeManager : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        string prefix = "Du hast ";
-        string mid = " von ";
-        string suffix = " Tests bestanden!";
         int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");

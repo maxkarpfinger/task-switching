@@ -6,23 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Level3Button : MonoBehaviour
 {
-    int level = 2;
     GameObject button;
-    // Start is called before the first frame update
-    void Start()
-    {
-        /*button = GameObject.Find("Level3Button");
-        if (GameManager.get().getLevel() < level)
-        {
-            lockButton();
-        }*/
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void OnButtonPress()
     {

@@ -19,7 +19,6 @@ public class Level3Game : MonoBehaviour
     GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
-    GameObject trialCounter;
     GameObject starPanel;
     GameObject text;
     GameObject stars;
@@ -35,7 +34,6 @@ public class Level3Game : MonoBehaviour
     void Start()
     {
         stimulus = GameObject.Find("Stimulus_1");
-        trialCounter = GameObject.Find("TrialCounter_1");
         starPanel = GameObject.Find("StarPanel1");
         text = GameObject.Find("StarAmount_1");
         starPanel.SetActive(false);
@@ -117,6 +115,14 @@ public class Level3Game : MonoBehaviour
         nextTrial();
     }
 
+    private IEnumerator StartMethod(float clipLength)
+    {
+        yield return new WaitForSeconds(clipLength);
+        var clip = Resources.Load("shape_game") as AudioClip;
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+
     public void nextTrial()
     {
         //
@@ -126,16 +132,13 @@ public class Level3Game : MonoBehaviour
             colorGame = false;
             //starPanel.SetActive(true);
             //text.GetComponent<Text>().text = SHAPE_GAME_INFO;
-            var clip = Resources.Load("shape_game") as AudioClip;
-            audioSource.clip = clip;
-            audioSource.Play();
+            StartCoroutine(StartMethod(0.35F));
         }
         if (trial >= numberOfTrials)
         {
             showStars();
             return;
         }
-        trialCounter.GetComponent<Text>().text = (trial + 1).ToString();
         setupTrial();
     }
 
@@ -206,11 +209,6 @@ public class Level3Game : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        string prefix = "Du hast ";
-        string mid = " von ";
-        string suffix = " Tests bestanden!";
-        string number = GameObject.Find("Level3Manager").GetComponent<Level3Game>().getCorrect().ToString();
-        string max = GameObject.Find("Level3Manager").GetComponent<Level3Game>().getTrials().ToString();
         int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");

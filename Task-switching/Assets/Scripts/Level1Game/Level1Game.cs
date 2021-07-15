@@ -13,14 +13,12 @@ public class Level1Game : MonoBehaviour
     int level = 0;
     static int numberOfTrials = 8;
     int[] stimulusArray = new int[numberOfTrials]; 
-    bool colorGame = true;
     bool isCorrectAnswerA = true;
     bool isSelectedA = true;
     GameObject stimulus;
     GameObject targetA;
     GameObject targetB;
     GameObject starPanel;
-    GameObject text;
     GameObject stars;
     GameObject mode;
     Sprite BLUE_EMMA; //or blue cake or blue balloon
@@ -38,11 +36,9 @@ public class Level1Game : MonoBehaviour
         targetA = GameObject.Find("TargetA_1");
         targetB = GameObject.Find("TargetB_1");
         starPanel = GameObject.Find("StarPanel1");
-        text = GameObject.Find("StarAmount_1");
         mode = GameObject.Find("Mode_Stimulus");
         mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
         starPanel.SetActive(false);
-        //text.GetComponent<Text>().text = COLOR_GAME_INFO;
         setupTargets();
         SPRITE_DEFAULT_POS = stimulus.transform.position;
         //stars = GameObject.Find("stars_achieved");
@@ -116,14 +112,7 @@ public class Level1Game : MonoBehaviour
 
     public void nextTrial()
     {
-        //
         trial++;
-        //if (trial == 2)
-        //{
-        //    colorGame = false;
-        //    starPanel.SetActive(true);
-        //    text.GetComponent<Text>().text = SHAPE_GAME_INFO;
-        //}
         if(trial >= numberOfTrials)
         {
             showStars();
@@ -177,11 +166,6 @@ public class Level1Game : MonoBehaviour
     {
         //display number of won stars
         //also give audio feedback
-        string prefix = "Du hast ";
-        string mid = " von ";
-        string suffix = " Tests bestanden!";
-        string number = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getCorrect().ToString();
-        string max = GameObject.Find("Level1Manager").GetComponent<Level1Game>().getTrials().ToString();
         int page = GameManager.get().getPage();
         starPanel.SetActive(true);
         stars = GameObject.Find("stars_achieved");
@@ -249,10 +233,6 @@ public class Level1Game : MonoBehaviour
                 nextLevel.GetComponent<Button>().interactable = false;
             }
         }
-
-        //text.GetComponent<Text>().text = prefix + number + mid + max + suffix;
-
-        //finish();
     }
 
     public void selectA()

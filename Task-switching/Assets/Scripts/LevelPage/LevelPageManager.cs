@@ -108,7 +108,7 @@ public class LevelPageManager : MonoBehaviour
             GameObject.Find("RightPage").GetComponent<Image>().color = new Color(1f, 1f, 1f, 1f);
         }
         if (GameManager.get().getPage() == 2)
-        {
+        {      
             GameObject.Find("RightPage").GetComponent<Image>().color = new Color(0f, 0f, 0f, 0f);
             GameObject.Find("LeftPage").GetComponent<Image>().sprite = Resources.Load<Sprite>("cake_navigation");
         }
