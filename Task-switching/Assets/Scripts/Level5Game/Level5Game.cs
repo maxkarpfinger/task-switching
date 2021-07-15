@@ -140,7 +140,7 @@ public class Level5Game : MonoBehaviour
     {
         //
         trial++;
-        if (trial %2 == 0 && trial != 0)
+        if (trial %2 == 0 && trial != 0 && trial < numberOfTrials)
         {
             colorGame = !colorGame;
             //starPanel.SetActive(true);
