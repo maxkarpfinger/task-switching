@@ -10,18 +10,20 @@ public class GameManager : MonoBehaviour
     int page = 0; // store the page of level page {friends:0, food:1, decoration:2}
     int starts = 0; // store the number of times the app has been started since reset
 
+    bool parentMode = true; // stores the parent mode switch
+
 
     private static GameManager instance = null; // static (class level) variable
     public static GameManager get()
     { // static getter (only accessing allowed)
-        return instance; 
-    }  
+        return instance;
+    }
 
     private void Awake()
     {
         // if instance is not yet set, set it and make it persistent between scenes
         if (instance == null)
-        {          
+        {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
             starts = PlayerPrefs.GetInt("starts");
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour
     {
         // if instance is not yet set, set it and make it persistent between scenes
         if (instance == null)
-        {            
+        {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
             starts = PlayerPrefs.GetInt("starts");
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Update the game progress
@@ -103,7 +105,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void incrementPage(){
-        page = page + 1;        
+        page = page + 1;
         //change if more than 3 pages
         if(page > 2){
             page = 2;
@@ -132,5 +134,13 @@ public class GameManager : MonoBehaviour
     public void setStarts(int i)
     {
         starts = i;
+    }
+
+    public void invertParentMode(){
+        parentMode = !parentMode;
+    }
+
+    public bool isParentMode(){
+        return parentMode;
     }
 }

@@ -21,6 +21,11 @@ public class Level1Game : MonoBehaviour
     GameObject starPanel;
     GameObject stars;
     GameObject mode;
+    GameObject parentPanel;
+    GameObject parentBlueEmma;
+    GameObject parentOrangeEmma;
+    GameObject parentBlueLuna;
+    GameObject parentOrangeLuna;
     Sprite BLUE_EMMA; //or blue cake or blue balloon
     Sprite BLUE_LUNA; //or cupcake or blue party hat
     Sprite ORANGE_LUNA; //or orange cake or orange balloon
@@ -37,6 +42,11 @@ public class Level1Game : MonoBehaviour
         targetB = GameObject.Find("TargetB_1");
         starPanel = GameObject.Find("StarPanel1");
         mode = GameObject.Find("Mode_Stimulus");
+        parentPanel = GameObject.Find("ParentPanel");
+        parentBlueEmma = GameObject.Find("blue_emma");
+        parentOrangeEmma = GameObject.Find("orange_emma");
+        parentBlueLuna = GameObject.Find("blue_luna");
+        parentOrangeLuna = GameObject.Find("orange_luna");
         mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
         starPanel.SetActive(false);
         setupTargets();
@@ -54,8 +64,12 @@ public class Level1Game : MonoBehaviour
         var clip = Resources.Load("color_game") as AudioClip;
         audioSource.clip = clip;
         audioSource.Play();
-
-        setupTrial();
+        parentPanel.SetActive(false);
+        if(GameManager.get().isParentMode()){
+            parentPanel.SetActive(true);
+        }else{
+            setupTrial();
+        }
     }
 
     private void setupTargets(){
@@ -68,6 +82,11 @@ public class Level1Game : MonoBehaviour
             ORANGE_LUNA = Resources.Load<Sprite>("orange_luna");
             targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cat");
             targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_dog");
+
+            parentBlueEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_emma");
+            parentOrangeEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_emma");
+            parentBlueLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_luna");
+            parentOrangeLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_luna");
         }else if(GameManager.get().getPage() == 1)
         {
             BLUE_EMMA = Resources.Load<Sprite>("blue_cupcake");
@@ -76,6 +95,11 @@ public class Level1Game : MonoBehaviour
             ORANGE_LUNA = Resources.Load<Sprite>("orange_cake");
             targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_cupcake");
             targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_cake");
+
+            parentBlueEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_cupcake");
+            parentOrangeEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_cupcake");
+            parentBlueLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_cake");
+            parentOrangeLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_cake");
         }
         else if(GameManager.get().getPage() == 2)
         {
@@ -86,6 +110,10 @@ public class Level1Game : MonoBehaviour
             targetA.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_target_balloon");
             targetB.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_target_partyhat");
 
+            parentBlueEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_balloon");
+            parentOrangeEmma.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_balloon");
+            parentBlueLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("blue_partyhat");
+            parentOrangeLuna.GetComponent<Image>().sprite = Resources.Load<Sprite>("orange_partyhat");
         }
     }
 
@@ -118,7 +146,11 @@ public class Level1Game : MonoBehaviour
             showStars();
             return;
         }
-        setupTrial();
+        if(GameManager.get().isParentMode()){
+            parentPanel.SetActive(true);
+        }else{
+            setupTrial();
+        }
     }
 
     public void setupTrial()
@@ -265,6 +297,12 @@ public class Level1Game : MonoBehaviour
     public int getCurrentTrial()
     {
         return trial;
+    }
+
+    public void setTrial(int stimulus){
+        stimulusArray[trial] = stimulus;
+        setupTrial();
+        GameObject.Find("ParentPanel").SetActive(false);
     }
 
 
