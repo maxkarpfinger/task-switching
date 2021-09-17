@@ -11,7 +11,7 @@ public class Level6Game : MonoBehaviour
     int trial = 0;
     int correct = 0;
     int level = 5;
-    static int numberOfTrials = 10;
+    static int numberOfTrials = 20;
     int[] stimulusArray = new int[numberOfTrials];
     bool colorGame = false;
     bool isCorrectAnswerA = true;
@@ -140,7 +140,7 @@ public class Level6Game : MonoBehaviour
     {
         //
         trial++;
-        if (trial % 2 == 0 && trial != 0 && trial < numberOfTrials)
+        if (trial % 1 == 0 && trial != 0 && trial < numberOfTrials)
         {
             colorGame = !colorGame;
             //starPanel.SetActive(true);
