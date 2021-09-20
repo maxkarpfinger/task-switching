@@ -11,6 +11,7 @@ public class Level1Game : MonoBehaviour
     int trial = 0;
     int correct = 0;
     int level = 0;
+    int parentCounter = 0;
     static int numberOfTrials = 8;
     int[] stimulusArray = new int[numberOfTrials]; 
     bool isCorrectAnswerA = true;
@@ -26,6 +27,7 @@ public class Level1Game : MonoBehaviour
     GameObject parentOrangeEmma;
     GameObject parentBlueLuna;
     GameObject parentOrangeLuna;
+    GameObject parentCounterText;
     Sprite BLUE_EMMA; //or blue cake or blue balloon
     Sprite BLUE_LUNA; //or cupcake or blue party hat
     Sprite ORANGE_LUNA; //or orange cake or orange balloon
@@ -47,6 +49,7 @@ public class Level1Game : MonoBehaviour
         parentOrangeEmma = GameObject.Find("orange_emma");
         parentBlueLuna = GameObject.Find("blue_luna");
         parentOrangeLuna = GameObject.Find("orange_luna");
+        parentCounterText = GameObject.Find("parentCounter");
         mode.GetComponent<Image>().sprite = Resources.Load<Sprite>("color_palette");
         starPanel.SetActive(false);
         setupTargets();
@@ -61,13 +64,14 @@ public class Level1Game : MonoBehaviour
             stimulusArray[i] = numb;
         }
 
-        var clip = Resources.Load("color_game") as AudioClip;
-        audioSource.clip = clip;
-        audioSource.Play();
         parentPanel.SetActive(false);
         if(GameManager.get().isParentMode()){
             parentPanel.SetActive(true);
+            parentCounterText.GetComponent<Text>().text = "0 / " + numberOfTrials + "\n ausgewählt";
         }else{
+            var clip = Resources.Load("color_game") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
             setupTrial();
         }
     }
@@ -146,11 +150,7 @@ public class Level1Game : MonoBehaviour
             showStars();
             return;
         }
-        if(GameManager.get().isParentMode()){
-            parentPanel.SetActive(true);
-        }else{
-            setupTrial();
-        }
+        setupTrial();
     }
 
     public void setupTrial()
@@ -300,9 +300,17 @@ public class Level1Game : MonoBehaviour
     }
 
     public void setTrial(int stimulus){
-        stimulusArray[trial] = stimulus;
-        setupTrial();
-        GameObject.Find("ParentPanel").SetActive(false);
+        stimulusArray[parentCounter++] = stimulus;
+        String output = "" + parentCounter + " / " + numberOfTrials + "\n ausgewählt";
+        parentCounterText.GetComponent<Text>().text = output;
+        if (parentCounter == numberOfTrials)
+        {
+            setupTrial();
+            var clip = Resources.Load("color_game") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
+            GameObject.Find("ParentPanel").SetActive(false);
+        }
     }
 
 
