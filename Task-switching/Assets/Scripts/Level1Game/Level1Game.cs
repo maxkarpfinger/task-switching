@@ -68,7 +68,11 @@ public class Level1Game : MonoBehaviour
         if(GameManager.get().isParentMode()){
             parentPanel.SetActive(true);
             parentCounterText.GetComponent<Text>().text = "0 / " + numberOfTrials + "\n ausgewählt";
-        }else{
+            var clip = Resources.Load("selection") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+        else{
             var clip = Resources.Load("color_game") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();

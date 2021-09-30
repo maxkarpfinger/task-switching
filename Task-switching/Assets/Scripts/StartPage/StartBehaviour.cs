@@ -17,10 +17,16 @@ public class StartBehaviour : MonoBehaviour
         
     }
 
+    public void OnBackToLevel()
+    {
+        SceneManager.LoadScene("LevelPage");
+    }
+
     public void OnButtonPress()
     {
+        GameManager.get().setParentMode(false);
         //switch to Level page
-        if(GameManager.get().getStarts() > 1)
+        if (GameManager.get().getStarts() > 1)
         {
             SceneManager.LoadScene("LevelPage");
         }
@@ -31,7 +37,23 @@ public class StartBehaviour : MonoBehaviour
         }
         
     }
-	
+
+    public void OnButtonPressParent()
+    {
+        GameManager.get().setParentMode(true);
+        //switch to Level page
+        if (GameManager.get().getStarts() > 1)
+        {
+            SceneManager.LoadScene("LevelPage");
+        }
+        else
+        {
+            GameManager.get().setStarts(2);
+            SceneManager.LoadScene("Tutorial");
+        }
+
+    }
+
     public void OnImpressumPress()
     {
 	    //switch to Impressum page

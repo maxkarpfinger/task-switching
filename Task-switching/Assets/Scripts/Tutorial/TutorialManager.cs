@@ -65,19 +65,26 @@ public class TutorialManager : MonoBehaviour
             GameObject.Find("LeftTutorial").GetComponent<Button>().interactable = true;
             GameObject.Find("RightTutorial").GetComponent<Button>().interactable = true;
         }
-        if(page == 2)
+        //if (page == 2)
+        //{
+         //   GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
+          //  GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("parentTutorial");
+           // GameObject.Find("background").GetComponent<VideoPlayer>().Play();
+        //}
+        /*else*/ if (page == 2)
         {
             GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
             GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("colorGameTutorial");
             GameObject.Find("background").GetComponent<VideoPlayer>().Play();
-            
-        }else if (page == 3)
+
+        }
+        else if (page == 3)
         {
             GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
             GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("shapeGameTutorial");
             GameObject.Find("background").GetComponent<VideoPlayer>().Play();
         }
-        else if(page == 4)
+        else if (page == 4)
         {
             SceneManager.LoadScene("LevelPractice");
         }

@@ -143,4 +143,9 @@ public class GameManager : MonoBehaviour
     public bool isParentMode(){
         return parentMode;
     }
+
+    public void setParentMode(bool parent)
+    {
+        parentMode = parent;
+    }
 }

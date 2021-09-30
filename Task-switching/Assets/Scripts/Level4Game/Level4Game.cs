@@ -115,6 +115,9 @@ public class Level4Game : MonoBehaviour
         {
             parentPanel.SetActive(true);
             parentCounterText.GetComponent<Text>().text = "0 / " + numberOfTrials + "\n ausgewählt";
+            var clip = Resources.Load("selection") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         else
         {

@@ -116,6 +116,9 @@ public class Level6Game : MonoBehaviour
         {
             parentPanel.SetActive(true);
             parentCounterText.GetComponent<Text>().text = "0 / " + numberOfTrials + "\n ausgewählt";
+            var clip = Resources.Load("selection") as AudioClip;
+            audioSource.clip = clip;
+            audioSource.Play();
         }
         else
         {
@@ -298,7 +301,19 @@ public class Level6Game : MonoBehaviour
             {
                 // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
                 stars.GetComponent<Image>().color = UnityEngine.Color.white;
-                var clip = Resources.Load("sticker_already_won") as AudioClip;
+                var clip = Resources.Load("sticker_already_won") as AudioClip; ;
+                if(page == 0)
+                {
+                    clip = Resources.Load("sticker_already_won") as AudioClip;
+                }else if(page == 1)
+                {
+                    clip = Resources.Load("sticker_already_won") as AudioClip;
+                }
+                else
+                {
+                    clip = Resources.Load("sticker_already_won") as AudioClip;
+                }
+                
                 audioSource.clip = clip;
                 audioSource.Play();
             }
@@ -315,15 +330,28 @@ public class Level6Game : MonoBehaviour
         {
             if (correct * 1.0 / numberOfTrials >= 0.75)
             {
-                // case when sticker has already been unlocked but would be unlocked again (lower level replayed)
+                // case when sticker has NOT already been unlocked
                 stars.GetComponent<Image>().color = UnityEngine.Color.white;
-                var clip = Resources.Load("sticker_won") as AudioClip;
+                var clip = Resources.Load("sticker_won") as AudioClip; ;
+                if (page == 0)
+                {
+                    clip = Resources.Load("sticker_won_food_intro") as AudioClip;
+                }
+                else if (page == 1)
+                {
+                    clip = Resources.Load("sticker_won_deco_intro") as AudioClip;
+                }
+                else
+                {
+                    clip = Resources.Load("sticker_won_end") as AudioClip;
+                }
+
                 audioSource.clip = clip;
-                audioSource.Play();          
+                audioSource.Play();
             }
             else
             {
-                // case when sticker has already been unlocked but would NOT be unlocked again (lower level replayed)
+                // case when sticker has NOT already been unlocked
                 var clip = Resources.Load("sticker_lose") as AudioClip;
                 audioSource.clip = clip;
                 audioSource.Play();
