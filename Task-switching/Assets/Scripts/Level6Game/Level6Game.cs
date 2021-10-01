@@ -122,7 +122,7 @@ public class Level6Game : MonoBehaviour
         }
         else
         {
-            var clip = Resources.Load("shape_game") as AudioClip;
+            var clip = Resources.Load("care") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
             setupTrial();
@@ -184,7 +184,7 @@ public class Level6Game : MonoBehaviour
         {
             colorGame = !colorGame;
             //starPanel.SetActive(true);
-            setText();
+            //setText();
             //audio
         }
         if (trial >= numberOfTrials)
@@ -404,7 +404,7 @@ public class Level6Game : MonoBehaviour
         if (parentCounter == numberOfTrials)
         {
             setupTrial();
-            var clip = Resources.Load("shape_game") as AudioClip;
+            var clip = Resources.Load("care") as AudioClip;
             audioSource.clip = clip;
             audioSource.Play();
             GameObject.Find("ParentPanel").SetActive(false);

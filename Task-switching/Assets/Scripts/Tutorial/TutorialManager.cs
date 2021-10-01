@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TutorialManager : MonoBehaviour
 {
     int page = 0;
-    int numberOfPages = 5;
+    int numberOfPages = 6;
     AudioSource audioSource;
     private IEnumerator coroutine;
 
@@ -86,6 +86,12 @@ public class TutorialManager : MonoBehaviour
         }
         else if (page == 4)
         {
+            GameObject.Find("background").GetComponent<VideoPlayer>().Stop();
+            GameObject.Find("background").GetComponent<VideoPlayer>().clip = (VideoClip)Resources.Load("parentTutorial");
+            GameObject.Find("background").GetComponent<VideoPlayer>().Play();
+        }
+        else if (page == 5)
+        {
             SceneManager.LoadScene("LevelPractice");
         }
         else
@@ -129,6 +135,12 @@ public class TutorialManager : MonoBehaviour
             audioSource.clip = clip;
             audioSource.Play();
             coroutine = StartMethod(33.0f);
+            StartCoroutine(coroutine);
+        }
+        if(page == 4)
+        {
+            audioSource.Stop();
+            coroutine = StartMethod(18.5f);
             StartCoroutine(coroutine);
         }
     }
