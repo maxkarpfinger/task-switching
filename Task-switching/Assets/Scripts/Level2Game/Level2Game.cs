@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System.Diagnostics;
 
 public class Level2Game : MonoBehaviour
 {
@@ -36,6 +37,8 @@ public class Level2Game : MonoBehaviour
     UnityEngine.AudioClip correctSound;
     Vector3 SPRITE_DEFAULT_POS;
     AudioSource audioSource;
+    Stopwatch timer;
+    String log;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +65,8 @@ public class Level2Game : MonoBehaviour
         correctSound = (UnityEngine.AudioClip) Resources.Load("./sounds/correct");
         audioSource = GetComponent<AudioSource>();
         setupTargets();
+        timer = new Stopwatch();
+        log = "";
         for (int i = 0; i < numberOfTrials; i++)
         {
             int numb = Random.Range(0, 4);
@@ -143,6 +148,10 @@ public class Level2Game : MonoBehaviour
     public void checkCorrectnes()
     {
         bool trialIsCorrect = isCorrectAnswerA && isSelectedA || !isCorrectAnswerA && !isSelectedA;
+        timer.Stop();
+        double elapsed = Math.Round(timer.Elapsed.TotalMilliseconds);
+        log += elapsed + "\t\t\t" + (trial + 1) + "\t\t\t2\t\t\t" + Convert.ToInt32(trialIsCorrect) + "\t\t\t" + Convert.ToInt32(GameManager.get().isParentMode()) + "\n";
+        timer = new Stopwatch();
         //check according to type of game and chosen image
         if (trialIsCorrect)
         {
@@ -173,6 +182,7 @@ public class Level2Game : MonoBehaviour
         //}
         if (trial >= numberOfTrials)
         {
+            UnityEngine.Debug.Log(log);
             showStars();
             return;
         }
@@ -181,9 +191,8 @@ public class Level2Game : MonoBehaviour
 
     public void setupTrial()
     {
+        timer.Start();
         //set correct answer and update stimulus
-        //only color game
-        Debug.Log("Trial is " + (trial + 1).ToString() + ", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
             stimulus.GetComponent<Image>().sprite = BLUE_EMMA;

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
+using System.Diagnostics;
 
 public class Level1Game : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class Level1Game : MonoBehaviour
     Sprite ORANGE_EMMA; // or orange cupcake or orange party hat
     Vector3 SPRITE_DEFAULT_POS;
     AudioSource audioSource;
+    Stopwatch timer;
+    String log;
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +60,8 @@ public class Level1Game : MonoBehaviour
         //stars = GameObject.Find("stars_achieved");
         //stars.SetActive(false);
         audioSource = GetComponent<AudioSource>();
-      
+        timer = new Stopwatch();
+        log = "";
         for (int i=0; i<numberOfTrials; i++)
         {
             int numb = Random.Range(0, 4);
@@ -128,6 +132,11 @@ public class Level1Game : MonoBehaviour
     public void checkCorrectnes()
     {
         bool trialIsCorrect = isCorrectAnswerA && isSelectedA || !isCorrectAnswerA && !isSelectedA;
+        //stop timer
+        timer.Stop();
+        double elapsed = Math.Round(timer.Elapsed.TotalMilliseconds);
+        log += elapsed + "\t\t\t" + (trial+1) + "\t\t\t1\t\t\t" + Convert.ToInt32(trialIsCorrect) + "\t\t\t" + Convert.ToInt32(GameManager.get().isParentMode()) + "\n";
+        timer = new Stopwatch();
         //check according to type of game and chosen image
         if (trialIsCorrect)
         {
@@ -151,6 +160,7 @@ public class Level1Game : MonoBehaviour
         trial++;
         if(trial >= numberOfTrials)
         {
+            UnityEngine.Debug.Log(log);
             showStars();
             return;
         }
@@ -159,9 +169,10 @@ public class Level1Game : MonoBehaviour
 
     public void setupTrial()
     {
+        //start timer for trial
+        timer.Start();
         //set correct answer and update stimulus
         //only color game
-        Debug.Log("Trial is "+ (trial+1).ToString()+", stimulus is " + stimulusArray[trial].ToString());
         if (stimulusArray[trial] == 0)
         {
             //spriteRenderer.sprite = BLUE_EMMA;
@@ -186,11 +197,12 @@ public class Level1Game : MonoBehaviour
 
     public void finish(bool backToMenu)
     {
-        //return to level page
+        
         if (correct * 1.0 / numberOfTrials >= 0.75 && level + 6 * GameManager.get().getPage() == GameManager.get().getLevel())
         {
            GameManager.get().incrementProgress();
         }
+        //return to level page
         if (backToMenu)
         {
             SceneManager.LoadScene("LevelPage");
