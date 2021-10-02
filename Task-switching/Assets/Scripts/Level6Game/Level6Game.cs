@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 using System.Diagnostics;
+using System.IO;
+using UnityEngine.Android;
 
 public class Level6Game : MonoBehaviour
 {
@@ -144,7 +146,11 @@ public class Level6Game : MonoBehaviour
         bool trialIsCorrect = isCorrectAnswerA && isSelectedA || !isCorrectAnswerA && !isSelectedA;
         timer.Stop();
         double elapsed = Math.Round(timer.Elapsed.TotalMilliseconds);
-        log += elapsed + "\t\t\t" + (trial + 1) + "\t\t\t6\t\t\t" + Convert.ToInt32(trialIsCorrect) + "\t\t\t" + Convert.ToInt32(GameManager.get().isParentMode()) + "\n";
+        log += elapsed + "," + (trial + 1) + ",6," + Convert.ToInt32(trialIsCorrect) + "," + Convert.ToInt32(colorGame) + "," + stimulusArray[trial] + "," + (GameManager.get().getPage()+1) + "," + Convert.ToInt32(GameManager.get().isParentMode());
+        if (trial + 1 < numberOfTrials)
+        {
+            log += "\n";
+        }
         timer = new Stopwatch();
         //check according to type of game and chosen image
         if (trialIsCorrect)
@@ -197,7 +203,15 @@ public class Level6Game : MonoBehaviour
         }
         if (trial >= numberOfTrials)
         {
-            UnityEngine.Debug.Log(log);
+            if (Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+            {
+                string path = Application.persistentDataPath + "log.txt";
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    sw.WriteLine(log);
+                }
+            }
+            //UnityEngine.Debug.Log(log);
             showStars();
             return;
         }

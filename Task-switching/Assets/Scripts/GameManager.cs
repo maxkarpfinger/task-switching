@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Android;
 
 public class GameManager : MonoBehaviour
 {
@@ -22,11 +23,20 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         // if instance is not yet set, set it and make it persistent between scenes
+        //GameObject.Find("Debug").GetComponent<Text>().text = Application.persistentDataPath;
         if (instance == null)
         {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
             starts = PlayerPrefs.GetInt("starts");
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageRead);
+            }
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+            }
             starts = starts + 1;
             PlayerPrefs.SetInt("starts", starts);
             PlayerPrefs.Save();
@@ -43,12 +53,23 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(Application.dataPath);
+        //GameObject.Find("Debug").GetComponent<Text>().text = Application.persistentDataPath;
         // if instance is not yet set, set it and make it persistent between scenes
         if (instance == null)
         {
             levels = PlayerPrefs.GetInt("levels");
             page = PlayerPrefs.GetInt("page");
             starts = PlayerPrefs.GetInt("starts");
+            //GameObject.Find("Debug").GetComponent<Text>().text = Application.persistentDataPath;
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageRead);        
+            }
+            if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
+            {
+                Permission.RequestUserPermission(Permission.ExternalStorageWrite);
+            }
             starts = starts + 1;
             instance = this;
             DontDestroyOnLoad(gameObject);
