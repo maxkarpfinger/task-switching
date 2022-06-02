@@ -1,2 +1,0 @@
-- when playing the shape game, after checking for correctnes when it is correct show some heart animations (animals like each other)
-- when displaying stars according to number of correct answers also give vocal feedback "you have won 5 stars!!"
